@@ -129,7 +129,7 @@ public class UserService {
 			connection = getConnection();
 
 			UserDao userDao = new UserDao();
-			User user = userDao.getUser(connection, null, null, user_id);
+			User user = userDao.getUser(connection, null, null);
 
 			commit(connection);
 			return user;

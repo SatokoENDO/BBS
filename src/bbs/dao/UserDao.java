@@ -120,42 +120,29 @@ public class UserDao {
 		}
 	}
 
-	public User getUser(Connection connection, String login_id, String password, int id) {
+	public User getUser(Connection connection, String login_id, String password) {
 
 		PreparedStatement ps = null;
-		try {
-			StringBuilder mySql = new StringBuilder();
-			if(login_id != null && password != null) {
-				mySql.append("select * from users where login_id = ? and password = ?");
-			}
-			else if(id != 0) {
-				mySql.append("select * from users where id = ? ");
-			}
-			ps = connection.prepareStatement(mySql.toString());
-
-			if(login_id != null && password != null){
+			try {
+				StringBuilder sql = new StringBuilder();
+				sql.append("SELECT * FROM users WHERE login_id = ? AND password = ? ;");
+				ps = connection.prepareStatement(sql.toString());
 				ps.setString(1, login_id);
 				ps.setString(2, password);
-			}
-			if(id != 0) {
-				ps.setInt(1, id);
-			}
+				ResultSet rs = ps.executeQuery();
+				List<User> userList = toUserList(rs);
 
-			ResultSet rs = ps.executeQuery();
-			List<User> userList = toUserList(rs);
-			if (userList.isEmpty() == true) {
-				return null;
-			} else if (2 <= userList.size()) {
-				throw new IllegalStateException("2 <= userList.size()");
-			} else {
-				return userList.get(0);
+				if (userList.isEmpty() == true) {
+					return null;
+				} else {
+					return userList.get(0);
+				}
+			} catch (SQLException e) {
+				throw new SQLRuntimeException(e);
+			} finally {
+				close(ps);
 			}
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally {
-			close(ps);
 		}
-	}
 
 	public void delete(Connection connection, String id) {
 		PreparedStatement ps = null;

@@ -16,14 +16,16 @@ public class MessageDao {
 		PreparedStatement ms = null;
 		try {
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO message ( ");
-			sql.append(",login_id");
+			sql.append("INSERT INTO messages ( ");
+			sql.append("id");
+			sql.append(", user_id");
 			sql.append(", title");
 			sql.append(", text");
 			sql.append(", category");
 			sql.append(", insert_date");
 			sql.append(") VALUES ("); //id
-			sql.append(", ?"); //login_id
+			sql.append("null");
+			sql.append(", ?"); //user_id
 			sql.append(", ?"); // title
 			sql.append(", ?"); // text
 			sql.append(", ?"); // category
@@ -32,9 +34,11 @@ public class MessageDao {
 
 			ms = connection.prepareStatement(sql.toString());
 
-			ms.setInt(1, message.getLoginId());
-			ms.setString(2, message.getText());
-			ms.setString(3, message.getCategory());
+			ms.setInt(1, message.getId());
+			ms.setString(2, message.getTitle());
+			ms.setString(3, message.getText());
+			ms.setString(4, message.getCategory());
+			ms.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);

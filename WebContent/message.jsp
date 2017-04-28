@@ -12,6 +12,10 @@
 </head>
 <body>
 
+<Marquee onmouseover=this.stop() onmouseout=this.start()>
+<FONT color="#000000" size="5"><STRONG>新規投稿</STRONG></FONT>
+</Marquee>
+
 	<c:if test = "${ not empty messages }">
 		<div class = "messages">
 			<ul>
@@ -24,33 +28,34 @@
 	</c:if>
 
 	<div class = "input-text">
-		<form action = "newmessage" method = "newmessage">
+		<form action = "message" method = "post">
 			<input type = "hidden" name = "id" value = "${ loginUser.id }">
 			<p>
-				<label for = "subject">件名(50文字以下)</label>
+				<label for = "title">件名(50文字以下)</label>
 			</p>
-			<input name = "subject" value = "${ subject }" /><br>
+			<input name = "title"/><br>
 			<br>
 
 			<p>
 				<label for = "category">カテゴリー(10文字以下)</label>
 			</p>
-			<input name = "category" value = "${ category }" /><br>
+			<input name = "category" /><br>
 			<br>
 
 			<p>
-				<label for = "body">本文(1000文字以下)</label>
+				<label for = "text">本文(1000文字以下)</label>
 			</p>
-			<textarea name = "body" class = "input-box" ><c:out value = "${ body }" /></textarea>
+			<textarea name = "text" class = "input-box" ></textarea>
 			<p>
 				<input type = "submit" value = "投稿">
 			</p>
 		</form>
 
 		<a href = "./home">戻る</a>
-		<c:remove var = "subject" scope = "session" />
-		<c:remove var = "body" scope = "session" />
+		<c:remove var = "title" scope = "session" />
 		<c:remove var = "category" scope = "session" />
+		<c:remove var = "text" scope = "session" />
+
 	</div>
 
 </body>
