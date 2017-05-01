@@ -7,7 +7,7 @@ public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String category, name, text, title;
-	private int id, branchId, departmentId, userId;
+	private int id, branchId, departmentId, user_id;
 	private Date insertDate;
 
 	public int getId() {
@@ -18,12 +18,12 @@ public class Message implements Serializable {
 		this.id = id;
 	}
 
-	public int getLoginId() {
-		return userId;
+	public int getUserId() {
+		return user_id;
 	}
 
-	public void setLoginId(int userId) {
-		this.userId = userId;
+	public void setUserId(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getName() {

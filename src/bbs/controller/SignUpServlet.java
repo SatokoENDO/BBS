@@ -16,6 +16,8 @@ import org.apache.commons.lang.StringUtils;
 import bbs.beans.Branch;
 import bbs.beans.Department;
 import bbs.beans.User;
+import bbs.service.BranchService;
+import bbs.service.DepartmentService;
 import bbs.service.UserService;
 
 @WebServlet(urlPatterns = { "/signup" })
@@ -30,8 +32,8 @@ public class SignUpServlet extends HttpServlet {
 		List<Branch> branch = new UserService().branch();
 		List<Department> department = new UserService().department();
 		HttpSession session = request.getSession();
-		session.setAttribute("branch", branch);
-		session.setAttribute("department", department);
+		session.setAttribute("branch_id", branch);
+		session.setAttribute("department_id", department);
 
 		request.getRequestDispatcher("signup.jsp").forward(request, response);
 	}
@@ -41,6 +43,7 @@ public class SignUpServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 
 		List<String> messages = new ArrayList<String>();
+		List<String> errormessages = new ArrayList<String>();
 
 		User user = new User();
 		user.setLoginId(request.getParameter("login_id"));
@@ -50,21 +53,20 @@ public class SignUpServlet extends HttpServlet {
 		user.setDepartmentId(Integer.parseInt(request.getParameter("department_id")));
 
 		HttpSession session = request.getSession();
+
 		if (isValid(request, messages) == true) {
-
 			new UserService().register(user);
-
-			response.sendRedirect("./");
+			response.sendRedirect("home.jsp");
 		} else {
-
-
-			request.setAttribute("user", user);
-
-			session.setAttribute("errormessages", messages);
+			session.setAttribute("errorMessages", messages);
+			User editUser = user;
+			request.setAttribute("editUser", editUser);
+			List<Branch> branches = new BranchService().select();
+			request.setAttribute("branches", branches);
+			List<Department> positions = new DepartmentService().select();
+			request.setAttribute("positions", positions);
 
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
-
-
 		}
 	}
 

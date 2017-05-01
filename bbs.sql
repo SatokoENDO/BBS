@@ -42,14 +42,15 @@ insert_date timestamp not null
 );
 
 /*メッセージを表示するためのビュー*/
-create view user_messages as
+create view user_message as
 select
-	login_id,
-	name,
-	messages.id as id,
-	user_id,
-	text,
-	messages.insert_date as insert_date
+	messages.id as user_id
+	, users.id as message_id
+	, title
+	, messages.text
+	, category
+	, name
+	, messages.insert_date
 from
 	users, messages
 where

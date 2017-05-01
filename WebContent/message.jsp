@@ -29,7 +29,7 @@
 
 	<div class = "input-text">
 		<form action = "message" method = "post">
-			<input type = "hidden" name = "id" value = "${ loginUser.id }">
+			<input type = "hidden" name = "id" value = "${ users.user_id }">
 			<p>
 				<label for = "title">件名(50文字以下)</label>
 			</p>

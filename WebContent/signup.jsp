@@ -13,9 +13,6 @@
 <div class="menu">
 	<a href="control">戻る</a>
 </div>
-<div class="user_name">
-	<c:out value="${ loginUser.name }" />
-</div>
 <hr />
 <c:if test="${ not empty errorMessages }">
 	<ul>

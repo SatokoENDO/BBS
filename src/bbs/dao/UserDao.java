@@ -56,7 +56,7 @@ public class UserDao {
 		}
 	}
 
-	public void doStop(Connection connection, Boolean is_locked, int user_id) {
+	public void doIsLocked(Connection connection, Boolean is_locked, int user_id) {
 
 		PreparedStatement ps = null;
 		try {

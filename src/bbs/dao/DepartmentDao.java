@@ -3,6 +3,7 @@ package bbs.dao;
 import static bbs.utils.CloseableUtil.*;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -48,6 +49,34 @@ public class DepartmentDao {
 			return ret;
 		} finally {
 			close(rs);
+		}
+	}
+
+	public Department getDepartment(Connection connection, int department_id) {
+
+		PreparedStatement ps = null;
+		try {
+			StringBuilder mySql = new StringBuilder();
+			mySql.append("select * from deprtments where id = ? ");
+
+			ps = connection.prepareStatement(mySql.toString());
+
+			ps.setInt(1, department_id);
+
+			ResultSet rs = ps.executeQuery();
+			List<Department> departmentList = toDepartmentList(rs);
+			if (departmentList.isEmpty() == true) {
+				return null;
+			} else if (2 <= departmentList.size()) {
+				throw new IllegalStateException("2 <= userList.size()");
+			} else {
+				return departmentList.get(0);
+			}
+
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close(ps);
 		}
 	}
 

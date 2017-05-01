@@ -36,8 +36,7 @@ public class MessageServlet extends HttpServlet {
 			message.setTitle(request.getParameter("title"));
 			message.setText(request.getParameter("text"));
 			message.setCategory(request.getParameter("category"));
-			message.setId(Integer.parseInt(request.getParameter("id")));
-			messages.add("投稿に成功しました");
+			//messages.add("投稿に成功しました");
 			session.setAttribute("messages", messages);
 			new MessageService().register(message);
 			response.sendRedirect("./home");
@@ -53,7 +52,7 @@ public class MessageServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		if (subject.length() == 0) {
 			messages.add("投稿に失敗しました");
-			
+
 			messages.add("件名を入力してください");
 		}
 

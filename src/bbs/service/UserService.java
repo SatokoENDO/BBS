@@ -100,14 +100,14 @@ public class UserService {
 	}
 
 	//ユーザーロック
-	public void doLock(Boolean is_locked, int user_id) {
+	public void doIsLocked(Boolean is_locked, int user_id) {
 
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
 			UserDao userDao = new UserDao();
-			userDao.doStop(connection, is_locked, user_id);
+			userDao.doIsLocked(connection, is_locked, user_id);
 
 			commit(connection);
 		} catch (RuntimeException e) {
@@ -197,6 +197,28 @@ public class UserService {
 			userDao.delete(connection, id);
 			commit(connection);
 		} catch (RuntimeException e) {
+			rollback(connection);
+			throw e;
+		} finally {
+			close(connection);
+		}
+	}
+
+	//ユーザーのロック
+	public void doStop(Boolean is_locked, int user_id) {
+
+		Connection connection = null;
+		try {
+			connection = getConnection();
+
+			UserDao userDao = new UserDao();
+			userDao.doIsLocked(connection, is_locked, user_id);
+
+			commit(connection);
+		} catch (RuntimeException e) {
+			rollback(connection);
+			throw e;
+		} catch (Error e) {
 			rollback(connection);
 			throw e;
 		} finally {

@@ -69,6 +69,4 @@ public class User implements Serializable {
 	public void setIsLocked(boolean is_locked) {
 		this.is_locked = is_locked;
 	}
-
-
 }
