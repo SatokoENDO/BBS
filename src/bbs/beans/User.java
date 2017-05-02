@@ -11,7 +11,7 @@ public class User implements Serializable {
 	private String name;
 	private int branchId;
 	private int departmentId;
-	private boolean isLocked;
+	private String isLocked;
 
 	public int getId() {
 		return id;
@@ -62,11 +62,11 @@ public class User implements Serializable {
 	}
 
 
-	public boolean isLocked() {
+	public String getIsLocked() {
 		return isLocked;
 	}
 
-	public void setIsLocked(boolean isLocked) {
+	public void setIsLocked(String isLocked) {
 		this.isLocked = isLocked;
 	}
 }

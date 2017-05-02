@@ -18,7 +18,7 @@
 	<div class="main-contents">
 		<div class="header">
 
-			<a href="message">新規投稿</a> <a href="login">ログアウト</a>
+			<a href="message">新規投稿</a> <a href="login">ログアウト</a> <a href = "admin">ユーザー管理（本社総務部専用）</a>
 		</div>
 	<div class="login_user">
 		<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>

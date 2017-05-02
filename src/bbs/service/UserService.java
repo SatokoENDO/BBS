@@ -100,7 +100,7 @@ public class UserService {
 	}
 
 	//ユーザーロック
-	public void doIsLocked(Boolean is_locked, int user_id) {
+	public void doIsLocked(String is_locked, int user_id) {
 
 		Connection connection = null;
 		try {
@@ -205,20 +205,15 @@ public class UserService {
 	}
 
 	//ユーザーのロック
-	public void doStop(Boolean is_locked, int user_id) {
-
+	public void isLocked(User user) {
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
 			UserDao userDao = new UserDao();
-			userDao.doIsLocked(connection, is_locked, user_id);
-
+			userDao.updateIsLocked(connection, user);
 			commit(connection);
 		} catch (RuntimeException e) {
-			rollback(connection);
-			throw e;
-		} catch (Error e) {
 			rollback(connection);
 			throw e;
 		} finally {

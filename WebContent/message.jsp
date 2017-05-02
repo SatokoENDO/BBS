@@ -15,8 +15,8 @@
 <Marquee onmouseover=this.stop() onmouseout=this.start()>
 <FONT color="#000000" size="5"><STRONG>新規投稿</STRONG></FONT>
 </Marquee>
-	<div class="login_user">
-		<span class="name"><c:out value="${login_user.name}" />がログイン中</span>
+	<div class="loginUser">
+		<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
 	</div><br/><br/>
 
 	<c:if test = "${ not empty messages }">

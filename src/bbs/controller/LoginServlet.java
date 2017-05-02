@@ -27,11 +27,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String login_id = request.getParameter("login_id");
+		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 
 		LoginService loginService = new LoginService();
-		User user = loginService.login(login_id, password);
+		User user = loginService.login(loginId, password);
 
 		HttpSession session = request.getSession();
 

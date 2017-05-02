@@ -43,8 +43,6 @@ public class SignUpServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 
 		List<String> messages = new ArrayList<String>();
-		List<String> errormessages = new ArrayList<String>();
-
 		User user = new User();
 		user.setLoginId(request.getParameter("login_id"));
 		user.setPassword(request.getParameter("password"));

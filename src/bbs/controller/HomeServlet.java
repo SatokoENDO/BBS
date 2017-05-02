@@ -22,7 +22,7 @@ public class HomeServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 
 		List<UserMessage> userMessage = new MessageService().getMessage();
-		System.out.println(userMessage.size());
+		//System.out.println(userMessage.size());
 		request.setAttribute("messages", userMessage);
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}

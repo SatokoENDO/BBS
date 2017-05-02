@@ -56,7 +56,7 @@ public class UserDao {
 		}
 	}
 
-	public void doIsLocked(Connection connection, Boolean is_locked, int user_id) {
+	public void doIsLocked(Connection connection, String is_locked, int user_id) {
 
 		PreparedStatement ps = null;
 		try {
@@ -68,7 +68,7 @@ public class UserDao {
 
 			ps = connection.prepareStatement(mySql.toString());
 
-			ps.setBoolean(1, is_locked);
+			ps.setString(1, is_locked);
 			ps.setInt(2, user_id);
 
 			int count = ps.executeUpdate();
@@ -144,6 +144,7 @@ public class UserDao {
 			}
 		}
 
+
 	public void delete(Connection connection, String id) {
 		PreparedStatement ps = null;
 		try {
@@ -170,7 +171,7 @@ public class UserDao {
 				String name = rs.getString("name");
 				int branch_id = rs.getInt("branch_id");
 				int department_id = rs.getInt("department_id");
-				Boolean is_locked = rs.getBoolean("is_locked");
+				String is_locked = rs.getString("is_locked");
 
 				User user = new User();
 				user.setId(id);
@@ -220,7 +221,7 @@ public class UserDao {
 				String name = rs.getString("name");
 				int branch_id = rs.getInt("branch_id");
 				int department_id = rs.getInt("department_id");
-				Boolean is_locked = rs.getBoolean("is_locked");
+				String is_locked = rs.getString("is_locked");
 
 				User user = new User();
 				user.setId(id);
@@ -239,6 +240,26 @@ public class UserDao {
 		}
 	}
 
+	public void updateIsLocked(Connection connection, User user) {
+		PreparedStatement ps = null;
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE users SET ");
+			sql.append(" is_locked = ?");
+			sql.append(" WHERE ");
+			sql.append(" id = ? ;");
+
+			ps = connection.prepareStatement(sql.toString());
+
+			ps.setString(1, user.getIsLocked());
+			ps.setInt(2, user.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close(ps);
+		}
+	}
 
 
 }
