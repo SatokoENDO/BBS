@@ -99,27 +99,6 @@ public class UserService {
 		}
 	}
 
-	//ユーザーロック
-	public void doIsLocked(String is_locked, int user_id) {
-
-		Connection connection = null;
-		try {
-			connection = getConnection();
-
-			UserDao userDao = new UserDao();
-			userDao.doIsLocked(connection, is_locked, user_id);
-
-			commit(connection);
-		} catch (RuntimeException e) {
-			rollback(connection);
-			throw e;
-		} catch (Error e) {
-			rollback(connection);
-			throw e;
-		} finally {
-			close(connection);
-		}
-	}
 
 	//ログイン
 	public User getUser(int user_id) {
@@ -204,20 +183,4 @@ public class UserService {
 		}
 	}
 
-	//ユーザーのロック
-	public void isLocked(User user) {
-		Connection connection = null;
-		try {
-			connection = getConnection();
-
-			UserDao userDao = new UserDao();
-			userDao.updateIsLocked(connection, user);
-			commit(connection);
-		} catch (RuntimeException e) {
-			rollback(connection);
-			throw e;
-		} finally {
-			close(connection);
-		}
-	}
 }
