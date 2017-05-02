@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bbs.beans.Message;
+import bbs.beans.User;
 import bbs.service.MessageService;
 
 @WebServlet(urlPatterns = {"/message"})
@@ -30,16 +31,18 @@ public class MessageServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 
-			if (isValid(request, messages) == true) {
-
+		if (isValid(request, messages) == true) {
+			User user = (User) session.getAttribute("login_user");
 			Message message = new Message();
+
 			message.setTitle(request.getParameter("title"));
 			message.setText(request.getParameter("text"));
 			message.setCategory(request.getParameter("category"));
+			message.setId(user.getId());
 			//messages.add("投稿に成功しました");
 			session.setAttribute("messages", messages);
 			new MessageService().register(message);
-			response.sendRedirect("./home");
+			response.sendRedirect("./");
 		} else {
 			session.setAttribute("messages", messages);
 			response.sendRedirect("message");
@@ -50,6 +53,7 @@ public class MessageServlet extends HttpServlet {
 		String subject = request.getParameter("title");
 		String body = request.getParameter("text");
 		String category = request.getParameter("category");
+
 		if (subject.length() == 0) {
 			messages.add("投稿に失敗しました");
 

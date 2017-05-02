@@ -21,9 +21,12 @@ public class UserMessageDao {
 		try{
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM user_message ");
-			sql.append("ORDER BY insert_date DESC limit " + limitNum);
+			sql.append("ORDER BY insert_date DESC  ");
 
 			ps = connection.prepareStatement(sql.toString());
+
+			System.out.println(ps.toString());
+
 			ResultSet rs = ps.executeQuery();
 
 			List<UserMessage> ret = toUserMessageList(rs);
@@ -41,25 +44,29 @@ public class UserMessageDao {
 			throws SQLException {
 		List<UserMessage> ret = new ArrayList<UserMessage>();
 		try{
+			while(rs.next()){
+			int user_id = rs.getInt("user_id");
 			int message_id = rs.getInt("message_id");
-			int userId = rs.getInt("user_id");
-			String name = rs.getString("name");
 			String title = rs.getString("title");
 			String text = rs.getString("text");
 			String category = rs.getString("category");
+			String name = rs.getString("name");
 			Timestamp insert_date = rs.getTimestamp("insert_date");
 
 			UserMessage message = new UserMessage();
+			message.setUserId(user_id);
 			message.SetMessageId(message_id);
-			message.setUserId(userId);
-			message.setName(name);
 			message.setTitle(title);
 			message.setText(text);
 			message.setCategory(category);
-			message.SetInsertDate(insert_date);
+			message.setName(name);
+			message.setInsertDate(insert_date);
 
 			ret.add(message);
+			}
+			System.out.println(ret.size());
 			return ret;
+
 		} finally{
 
 			close(rs);

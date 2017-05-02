@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
-
 import bbs.beans.User;
 import bbs.service.LoginService;
 
@@ -39,18 +37,17 @@ public class LoginServlet extends HttpServlet {
 
 		List<String> messages = new ArrayList<String>();
 
-		if(isValid(request, messages, user) == true) {
-			session.setAttribute("user_id", user);
-			response.sendRedirect("home");
+		if(user != null){
+			session.setAttribute("login_user", user);
+			response.sendRedirect("./");
 		} else {
+			messages.add("ログインに失敗しました");
 			session.setAttribute("errorMessages", messages);
-			request.setAttribute("editUser", login_id);
-
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.sendRedirect("login");
 		}
 	}
 
-	private boolean isValid (HttpServletRequest request, List<String> messages, User user) {
+	/*private boolean isValid (HttpServletRequest request, List<String> messages, User user) {
 		String login_id = (request.getParameter("login_id"));
 		String password = (request.getParameter("password"));
 
@@ -72,6 +69,6 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			return true;
 		}
-	}
+	}*/
 
 }

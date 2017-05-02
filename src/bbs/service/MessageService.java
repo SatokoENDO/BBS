@@ -57,24 +57,4 @@ public class MessageService {
 		}
 	}
 
-
-	public void delete(int deleted_id){
-		Connection connection = null;
-		try{
-			connection = getConnection();
-
-			MessageDao messageDao = new MessageDao();
-			messageDao.delete(connection, deleted_id);
-
-			commit(connection);
-		} catch(RuntimeException e){
-			 rollback(connection);
-			 throw e;
-		} catch(Error e){
-			 rollback(connection);
-			 throw e;
-		} finally{
-			 close(connection);
-		}
-	}
 }

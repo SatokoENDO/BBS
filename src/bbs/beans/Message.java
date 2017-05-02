@@ -1,14 +1,14 @@
 package bbs.beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String category, name, text, title;
-	private int id, branchId, departmentId, user_id;
-	private Date insertDate;
+	private int id, branchId, departmentId, userId;
+	private Timestamp insertDate;
 
 	public int getId() {
 		return id;
@@ -19,11 +19,11 @@ public class Message implements Serializable {
 	}
 
 	public int getUserId() {
-		return user_id;
+		return userId;
 	}
 
-	public void setUserId(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -58,12 +58,12 @@ public class Message implements Serializable {
 		this.category = category;
 	}
 
-	public Date getInsertDate() {
-		return insertDate;
+	public void setInsertDate(Timestamp insertDate){
+		this.insertDate = insertDate;
 	}
 
-	public void setInsertDate(Date insertDate) {
-		this.insertDate = insertDate;
+	public Timestamp getInsertDate(){
+		return insertDate;
 	}
 
 	public int getBranchId() {

@@ -1,60 +1,69 @@
 package bbs.beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class UserMessage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public int user_id;
-	private int message_id;
-	private int login_id;
-	private int branch_id;
-	private int department_id;
+	private int id;
+	public int userId;
+	private int messageId;
+	private int loginId;
+	private int branchId;
+	private int departmentId;
 	private String title;
 	private String text;
 	private String category;
 	private String name;
-	private Date insert_date;
+	private Timestamp insertDate;
+
+	public int getId(){
+		return id;
+	}
+
+	public void setId(int id){
+		this.id = id;
+	}
 
 	public int getUserId() {
-		return user_id;
+		return userId;
 	}
-	public void setUserId(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public int GetMessageId() {
-		return message_id;
+		return messageId;
 	}
 
-	public void SetMessageId(int message_id) {
-		this.message_id = message_id;
+	public void SetMessageId(int messageId) {
+		this.messageId = messageId;
 
 	}
 
 	public int getLoginId() {
-		return login_id;
+		return loginId;
 	}
 
-	public void setLoginId(int login_id) {
-		this.login_id = login_id;
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
 	}
 
 	public int getBranchId() {
-		return branch_id;
+		return branchId;
 	}
 
-	public void setBranchId (int branch_id) {
-		this.branch_id = branch_id;
+	public void setBranchId (int branchId) {
+		this.branchId = branchId;
 	}
 
 	public int getDepartmentId() {
-		return department_id;
+		return departmentId;
 	}
 
-	public void setDepartmentId (int department_id) {
-		this.department_id = department_id;
+	public void setDepartmentId (int departmentId) {
+		this.departmentId = departmentId;
 
 	}
 
@@ -91,14 +100,11 @@ public class UserMessage implements Serializable {
 		this.name = name;
 	}
 
-	public Date insert_date() {
-		return insert_date;
+	public void setInsertDate(Timestamp insertDate){
+		this.insertDate = insertDate;
 	}
 
-	public void SetInsertDate(Date insert_date) {
-		this.insert_date = insert_date;
+	public Timestamp getInsertDate(){
+		return insertDate;
 	}
-
-
-
 }

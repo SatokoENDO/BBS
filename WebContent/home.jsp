@@ -20,35 +20,38 @@
 
 			<a href="message">新規投稿</a> <a href="login">ログアウト</a>
 		</div>
+	<div class="login_user">
+		<span class="name"><c:out value="${login_user.name}" />がログイン中</span>
+	</div><br/><br/>
 
 		<div class="messages">
-		<c:forEach items="${messages}" var="messages">
+			<c:forEach items="${messages}" var="message">
 
 				<div class="name">
 					投稿者：
-					<c:out value="${messages.name}" />
+					<c:out value="${message.name}" />
 				</div>
 				<div class="title">
 					件名：
-					<c:out value="${messages.title}" />
+					<c:out value="${message.title}" />
 				</div>
 				<div class="text">
 					本文：
-					<c:out value="${messages.text}" />
+					<c:out value="${message.text}" />
 				</div>
 				<div class="category">
 					カテゴリー：
-					<c:out value="${messages.category}" />
+					<c:out value="${message.category}" />
 				</div>
 				<div class="date">
 					投稿日時：
-					<fmt:formatDate value="${messages.insert_date}"
+					<fmt:formatDate value="${message.insertDate}"
 						pattern="yyyy/MM/dd HH:mm:ss" />
 				</div>
 
 
-		</c:forEach>
-	</div>
+			</c:forEach>
+		</div>
 	</div>
 </body>
 </html>

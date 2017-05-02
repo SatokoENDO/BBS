@@ -6,12 +6,12 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	private String login_id;
+	private String loginId;
 	private String password;
 	private String name;
-	private int branch_id;
-	private int department_id;
-	private boolean is_locked;
+	private int branchId;
+	private int departmentId;
+	private boolean isLocked;
 
 	public int getId() {
 		return id;
@@ -22,11 +22,11 @@ public class User implements Serializable {
 	}
 
 	public String getLoginId() {
-		return login_id;
+		return loginId;
 	}
 
-	public void setLoginId(String login_id) {
-		this.login_id = login_id;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getPassword() {
@@ -46,27 +46,27 @@ public class User implements Serializable {
 	}
 
 	public int getBranchId() {
-		return branch_id;
+		return branchId;
 	}
 
-	public void setBranchId(int branch_id) {
-		this.branch_id = branch_id;
+	public void setBranchId(int branchId) {
+		this.branchId = branchId;
 	}
 
 	public int getDepartmentId() {
-		return department_id;
+		return departmentId;
 	}
 
-	public void setDepartmentId(int department_id) {
-		this.department_id = department_id;
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
 
-	public boolean is_locked() {
-		return is_locked;
+	public boolean isLocked() {
+		return isLocked;
 	}
 
-	public void setIsLocked(boolean is_locked) {
-		this.is_locked = is_locked;
+	public void setIsLocked(boolean isLocked) {
+		this.isLocked = isLocked;
 	}
 }
