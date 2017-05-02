@@ -32,14 +32,14 @@ public class MessageServlet extends HttpServlet {
 		List<String> messages = new ArrayList<String>();
 
 		if (isValid(request, messages) == true) {
-			User user = (User) session.getAttribute("login_user");
+			User user = (User) session.getAttribute("loginUser");
 			Message message = new Message();
 
 			message.setTitle(request.getParameter("title"));
 			message.setText(request.getParameter("text"));
 			message.setCategory(request.getParameter("category"));
-			message.setId(user.getId());
-			//messages.add("投稿に成功しました");
+			message.setUserId(user.getId());
+
 			session.setAttribute("messages", messages);
 			new MessageService().register(message);
 			response.sendRedirect("./");

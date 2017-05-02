@@ -21,7 +21,7 @@
 			<a href="message">新規投稿</a> <a href="login">ログアウト</a>
 		</div>
 	<div class="login_user">
-		<span class="name"><c:out value="${login_user.name}" />がログイン中</span>
+		<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
 	</div><br/><br/>
 
 		<div class="messages">
@@ -47,7 +47,7 @@
 					投稿日時：
 					<fmt:formatDate value="${message.insertDate}"
 						pattern="yyyy/MM/dd HH:mm:ss" />
-				</div>
+				</div><br/><br/>
 
 
 			</c:forEach>

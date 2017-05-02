@@ -41,10 +41,10 @@
 		<th>名前</th><td><input type="text" name="name" value="${users.name }" /></td>
 	</tr>
 	<tr>
-		<th>所属支店ID</th><td><input type="text" name="branch_id" value="${branch_id }" /></td>
+		<th>所属支店ID</th><br><th>　本社:1　A支店：2　B支店：3　C支店：4</th><td><input type="text" name="branch_id" value="${branch_id }" /></td>
 	</tr>
 	<tr>
-		<th>所属部署ID</th><td><input type="text" name="department_id" value="${department_id }" /></td>
+		<th>所属部署ID</th><th>総務部:1　情報部：2　支店長：3　社員：4</th><td><input type="text" name="department_id" value="${department_id }" /></td>
 	</tr>
 	<tr>
 

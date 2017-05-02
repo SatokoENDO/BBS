@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		List<String> messages = new ArrayList<String>();
 
 		if(user != null){
-			session.setAttribute("login_user", user);
+			session.setAttribute("loginUser", user);
 			response.sendRedirect("./");
 		} else {
 			messages.add("ログインに失敗しました");
@@ -46,29 +46,4 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("login");
 		}
 	}
-
-	/*private boolean isValid (HttpServletRequest request, List<String> messages, User user) {
-		String login_id = (request.getParameter("login_id"));
-		String password = (request.getParameter("password"));
-
-		if (StringUtils.isEmpty(login_id) == true) {
-			messages.add("ログインIDを入力してください");
-		}
-		if (StringUtils.isEmpty(password) == true) {
-			messages.add("パスワードを入力してください");
-		}
-		if (user != null) {
-			if (!user.is_locked()) {
-				messages.add("ログインに失敗しました");
-			}
-		} else {
-			messages.add("ログインに失敗しました");
-		}
-		if (messages.size() != 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}*/
-
 }
