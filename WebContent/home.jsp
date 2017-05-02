@@ -8,12 +8,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+	function disp1(){
+		if(window.confirm('停止しますか？')){
+			location.href = "admin";
+		} else {
+			return false;
+		}
+	}
+	function disp2(){
+		if(window.confirm('復活しますか？')){
+			location.href = "admin";
+		} else {
+			return false;
+		}
+	}
+	function goDeleteServlet(){
+		if(window.confirm('本当に削除しますか？')){
+			location.href = "admin";
+		} else {
+			return false;
+		}
+	}
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>掲示板</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
+<Marquee onmouseover=this.stop() onmouseout=this.start()>
+<FONT color="#000000" size="5"><STRONG>掲示板ホーム</STRONG></FONT>
+</Marquee>
 
 	<div class="main-contents">
 		<div class="header">

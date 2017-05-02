@@ -54,7 +54,7 @@
 			</p>
 		</form>
 
-		<a href = "./home">戻る</a>
+		<a href = "./">戻る</a>
 		<c:remove var = "title" scope = "session" />
 		<c:remove var = "category" scope = "session" />
 		<c:remove var = "text" scope = "session" />

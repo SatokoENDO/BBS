@@ -35,7 +35,6 @@
 
 	<br>
 	<br><input type = "submit" value ="ログイン"><br/>
-	<br><a href = "./">戻る</a>
 </form>
 
 </div>
