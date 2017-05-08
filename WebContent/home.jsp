@@ -45,7 +45,10 @@
 	<div class="main-contents">
 		<div class="header">
 
-			<a href="message">新規投稿</a> <a href="login">ログアウト</a> <a href = "admin">ユーザー管理（本社総務部専用）</a>
+			<a href="message">新規投稿</a> <a href="login">ログアウト</a>
+			<c:if test="${loginUser.branchId == 1 && loginUser.departmentId == 1}">
+			<a href="admin">ユーザー管理</a>
+	</c:if>
 		</div>
 	<div class="loginUser">
 		<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
@@ -74,7 +77,15 @@
 					投稿日時：
 					<fmt:formatDate value="${message.insertDate}"
 						pattern="yyyy/MM/dd HH:mm:ss" />
-				</div><br/><br/>
+				</div><br/>
+				<div class = "comments-form">
+			<form action = "comment" method = "post">
+
+				<input type ="hidden" name = "messageId" value = "${message.id}">
+				<textarea name = "text" cols ="50" rows = "5" class = "comment-box"></textarea><br/>
+				<input type = "submit" value = "コメント">
+			</form>
+		</div><br/><br/>
 
 
 			</c:forEach>
