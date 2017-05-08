@@ -15,7 +15,7 @@
 		}
 	}
 	function check2(){
-		if(window.confirm('削除してよろしいですか？')){
+		if(window.confirm('本当に削除してよろしいですか？')){
 			location.href = "admin";
 		} else {
 			return false;
@@ -36,7 +36,7 @@
 	<br>
 	<div class="header">
 
-			<a href="./">ホーム</a> <a href="login">ログアウト</a>
+			<a href="./">ホーム</a> <a href="login">ログアウト</a> <a href="signup">新規ユーザー登録</a>
 		</div><br>
 
 
@@ -80,11 +80,12 @@
 			</c:if></td>
 
 			<td><c:if test = "${ user.id != loginUser.id }">
-				<form action = "deleteUser" method = "post" onClick = "return check2()">
-					<input type = "hidden" name = "userId" value = "${user.id}">
+				<form action = "delete" method = "post" onClick = "return check2()">
+					<input type = "hidden" name = "id" value = "${user.id}">
 					<p><input  type = "submit" value = "ユーザー削除"></p>
 				</form>
 			</c:if></td>
+
 		</tr>
 	</c:forEach>
 	</table>

@@ -146,40 +146,23 @@ public class UserService {
 	}
 
 	//ユーザー削除
-	public void userDelete(User user, String password) {
-
+	public void delete(int deletedId){
 		Connection connection = null;
-		try {
+		try{
 			connection = getConnection();
 
 			UserDao userDao = new UserDao();
-			userDao.userUpdete(connection, user, password);
+			userDao.delete(connection, deletedId);
 
 			commit(connection);
-		} catch (RuntimeException e) {
-			rollback(connection);
-			throw e;
-		} catch (Error e) {
-			rollback(connection);
-			throw e;
-		} finally {
-			close(connection);
-		}
-	}
-
-	public void delete(String id) {
-		Connection connection = null;
-		try {
-			connection = getConnection();
-
-			UserDao userDao = new UserDao();
-			userDao.delete(connection, id);
-			commit(connection);
-		} catch (RuntimeException e) {
-			rollback(connection);
-			throw e;
-		} finally {
-			close(connection);
+		} catch(RuntimeException e){
+			 rollback(connection);
+			 throw e;
+		} catch(Error e){
+			 rollback(connection);
+			 throw e;
+		} finally{
+			 close(connection);
 		}
 	}
 

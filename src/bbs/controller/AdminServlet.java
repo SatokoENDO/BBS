@@ -19,13 +19,10 @@ public class AdminServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)throws IOException, ServletException{
-
 		HttpSession session = request.getSession();
-
 		List<User> users = new AdminService().getUsers();
 
 		request.setAttribute("users", users);
-
 		request.getRequestDispatcher("admin.jsp").forward(request, response);
 
 	}

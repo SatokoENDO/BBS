@@ -8,6 +8,7 @@ public class User implements Serializable {
 	private int id;
 	private String loginId;
 	private String password;
+	private String checkPassword;
 	private String name;
 	private int branchId;
 	private int departmentId;
@@ -35,6 +36,13 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
 	}
 
 	public String getName() {
@@ -69,4 +77,11 @@ public class User implements Serializable {
 	public void setIsLocked(String isLocked) {
 		this.isLocked = isLocked;
 	}
+
+	public void setcheckPassword(String parameter) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+
 }

@@ -32,8 +32,8 @@ public class SignUpServlet extends HttpServlet {
 		List<Branch> branch = new UserService().branch();
 		List<Department> department = new UserService().department();
 		HttpSession session = request.getSession();
-		session.setAttribute("branch_id", branch);
-		session.setAttribute("department_id", department);
+		session.setAttribute("branchId", branch);
+		session.setAttribute("departmentId", department);
 
 		request.getRequestDispatcher("signup.jsp").forward(request, response);
 	}
@@ -44,11 +44,12 @@ public class SignUpServlet extends HttpServlet {
 
 		List<String> messages = new ArrayList<String>();
 		User user = new User();
-		user.setLoginId(request.getParameter("login_id"));
+		user.setLoginId(request.getParameter("loginId"));
 		user.setPassword(request.getParameter("password"));
+		user.setCheckPassword(request.getParameter("checkPassword"));
 		user.setName(request.getParameter("name"));
-		user.setBranchId(Integer.parseInt(request.getParameter("branch_id")));
-		user.setDepartmentId(Integer.parseInt(request.getParameter("department_id")));
+		user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
+		user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 
 		HttpSession session = request.getSession();
 
@@ -61,8 +62,8 @@ public class SignUpServlet extends HttpServlet {
 			request.setAttribute("editUser", editUser);
 			List<Branch> branches = new BranchService().select();
 			request.setAttribute("branches", branches);
-			List<Department> positions = new DepartmentService().select();
-			request.setAttribute("positions", positions);
+			List<Department> departments = new DepartmentService().select();
+			request.setAttribute("departments", departments);
 
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
 		}
@@ -70,16 +71,16 @@ public class SignUpServlet extends HttpServlet {
 
 	private boolean isValid(HttpServletRequest request, List<String> messages) {
 		String name = request.getParameter("name");
-		String login_id = request.getParameter("login_id");
+		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
-		String password_check = request.getParameter("password_check");
+		String checkPassword = request.getParameter("checkPassword");
 
 
 
-		if (login_id.length() < 6 || login_id.length() > 20) {
+		if (loginId.length() < 6 || loginId.length() > 20) {
 			messages.add("ログインIDの文字数は6文字以上20文字以下で入力してください");
 
-		} else if (!login_id.matches("[a-zA-Z0-9]{6,20}")){
+		} else if (!loginId.matches("[a-zA-Z0-9]{6,20}")){
 			messages.add("ログインIDは半角英数字で入力してください");
 		}
 
@@ -93,7 +94,7 @@ public class SignUpServlet extends HttpServlet {
 			messages.add("パスワードは半角英数字で入力してください");
 		}
 
-		if (!password.equals(password_check)) {
+		if (!password.equals(checkPassword)) {
 			messages.add("パスワードが確認用と一致しません。");
 		}
 

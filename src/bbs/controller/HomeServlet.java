@@ -24,7 +24,7 @@ public class HomeServlet extends HttpServlet {
 		List<UserMessage> userMessage = new MessageService().getMessage();
 		//System.out.println(userMessage.size());
 		request.setAttribute("messages", userMessage);
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
 

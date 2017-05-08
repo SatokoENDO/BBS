@@ -145,17 +145,17 @@ public class UserDao {
 		}
 
 
-	public void delete(Connection connection, String id) {
+	public void delete(Connection connection, int deletedId){
 		PreparedStatement ps = null;
-		try {
-			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM users WHERE id = ? ;");
-			ps =  connection.prepareStatement(sql.toString());
-			ps.setString(1, id);
+		try{
+			String sql = "DELETE FROM users WHERE id = ?";
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1,  deletedId);
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
-		} finally {
+		} finally{
 			close(ps);
 		}
 	}
@@ -195,7 +195,7 @@ public class UserDao {
 		PreparedStatement ps = null;
 		try {
 			StringBuilder mySql = new StringBuilder();
-			mySql.append("select * from users ");
+			mySql.append("SELECT * FROM users ");
 
 			ps = connection.prepareStatement(mySql.toString());
 

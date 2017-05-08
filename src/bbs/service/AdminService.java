@@ -45,22 +45,4 @@ public class AdminService {
 		}
 	}
 
-	/*public void delete(int deletedId){
-		Connection connection = null;
-		try{
-			connection = getConnection();
-
-			UserDao userDao = new UserDao();
-			userDao.delete(connection, deletedId);
-
-			commit(connection);
-		} catch(RuntimeException e){
-			rollback(connection);
-			throw e;
-		} catch(Error e){
-			rollback(connection);
-			throw e;
-		} finally{
-			close(connection);
-		}*/
 }

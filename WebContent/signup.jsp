@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="menu">
-	<a href="control">戻る</a>
+	<a href="./">戻る</a>
 </div>
 <hr />
 <c:if test="${ not empty errorMessages }">
@@ -29,22 +29,22 @@
 <form action="signup" method="post">
 <table class="signup">
 	<tr>
-		<th>ログインID</th><td><input type="text" name="login_id" value="${login_id}" /></td>
+		<th>ログインID</th><td><input type="text" name="loginId" value="${loginId}" /></td>
 	</tr>
 	<tr>
 		<th>パスワード</th><td><input type="password" name="password" /></td>
 	</tr>
 	<tr>
-		<th>パスワード(確認)</th><td><input type="password" name="password_check" /></td>
+		<th>パスワード(確認)</th><td><input type="password" name="checkPassword" /></td>
 	</tr>
 	<tr>
-		<th>名前</th><td><input type="text" name="name" value="${users.name }" /></td>
+		<th>名前</th><td><input type="text" name="name" value="${name}" /></td>
 	</tr>
 	<tr>
-		<th>所属支店ID</th><br><th>　本社:1　A支店：2　B支店：3　C支店：4</th><td><input type="text" name="branch_id" value="${branch_id }" /></td>
+		<th>所属支店ID</th><th>　本社:1　A支店：2　B支店：3　C支店：4</th><td><input type="text" name="branchId" value="${branchId }" /></td>
 	</tr>
 	<tr>
-		<th>所属部署ID</th><th>総務部:1　情報部：2　支店長：3　社員：4</th><td><input type="text" name="department_id" value="${department_id }" /></td>
+		<th>所属部署ID</th><th>総務部:1　情報部：2　支店長：3　社員：4</th><td><input type="text" name="departmentId" value="${departmentId }" /></td>
 	</tr>
 	<tr>
 
