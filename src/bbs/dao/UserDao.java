@@ -240,26 +240,120 @@ public class UserDao {
 		}
 	}
 
-	public void updateIsLocked(Connection connection, User user) {
+
+	//ユーザー編集
+	public void update(Connection connection, User user){
+		PreparedStatement ps = null;
+
+		try{
+			StringBuilder sql = new StringBuilder();
+
+			sql.append("UPDATE users SET");
+			sql.append(" login_id = ?");
+			sql.append(", branch_id = ?");
+			sql.append(", department_id = ?");
+			sql.append(", password = ?");
+			sql.append(", name = ?");
+			sql.append(" WHERE id = ?");
+			ps = connection.prepareStatement(sql.toString());
+
+			ps.setString(1, user.getLoginId());
+			ps.setInt(2, user.getBranchId());
+			ps.setInt(3, user.getDepartmentId());
+			ps.setString(4, user.getPassword());
+			ps.setString(5, user.getName());
+			ps.setInt(6, user.getId());
+			ps.executeUpdate();
+
+			System.out.println(ps.toString());
+		}  catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally{
+			close(ps);
+		}
+	}
+
+	public User getUserFromId(Connection connection, int id){
+		PreparedStatement ps = null;
+		try{
+			String sql = "SELECT * FROM users WHERE id = ? ";
+			ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			List<User> userList = toUserList(rs);
+
+			if(userList.isEmpty() == true){
+				return null;
+			} else if(userList.size() >= 2){
+				throw new IllegalStateException("userList.size() >= 2");
+			} else{
+				return userList.get(0);
+			}
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally{
+			close(ps);
+		}
+	}
+
+	public String updateUser(Connection connection, User user, int check) {
+		String message = new String();
+		PreparedStatement SurchPs = null;
 		PreparedStatement ps = null;
 		try {
+			StringBuilder SearchSql = new StringBuilder();
+			SearchSql.append("SELECT * FROM users WHERE login_id = ? ");
+			SearchSql.append(" AND id != ? ;");
+			SurchPs = connection.prepareStatement(SearchSql.toString());
+			SurchPs.setString(1, user.getLoginId());
+			SurchPs.setInt(2, user.getId());
+
+			ResultSet rs = SurchPs.executeQuery();
+			if (rs.next()) {
+				message = "そのログインIDは既に登録されています";
+				return message;
+			}
+
+			//編集画面
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE users SET ");
-			sql.append(" is_locked = ?");
+			sql.append("login_id = ?, ");
+
+			sql.append("account = ?, ");
+			sql.append("branch_id = ?, ");
+			sql.append("position_id = ? ");
+			if (check == 0) {
+				sql.append(", password = ? ");
+			}
 			sql.append(" WHERE ");
 			sql.append(" id = ? ;");
 
 			ps = connection.prepareStatement(sql.toString());
 
-			ps.setString(1, user.getIsLocked());
-			ps.setInt(2, user.getId());
+			ps.setString(1, user.getLoginId());
+			ps.setString(2, user.getName());
+			ps.setInt(3, user.getBranchId());
+			ps.setInt(4, user.getDepartmentId());
+			if (check == 0) {
+				ps.setString(5, user.getPassword());
+				ps.setInt(6, user.getId());
+			} else {
+				ps.setInt(5, user.getId());
+			}
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
+			close(SurchPs);
 			close(ps);
 		}
+		return message;
 	}
+
+
 
 
 }

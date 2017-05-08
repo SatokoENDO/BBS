@@ -59,11 +59,11 @@
 			<td><div class = "departmentId"><c:out value = "${ user.departmentId }" /></div></td>
 
 			<td>
-				<form action = "setting" method = "get">
-					<input type = "hidden" name = "id" value = "${user.id}">
-					<p><input  type = "submit" value = "編集"></p>
-				</form>
-			</td>
+			<form action = "edituser" method = "get">
+			<input type ="hidden" name = "userId" value = "${user.id}">
+			<input type="submit" value = "編集" onclick = "location.href = 'edituser'">
+			</form>
+		</td>
 
 			<td><c:if test = "${ user.id != loginUser.id }">
 				<form action = "admin" method = "post" onClick = "return check1()">

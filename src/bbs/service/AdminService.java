@@ -45,4 +45,25 @@ public class AdminService {
 		}
 	}
 
+	public User getUser(int id){
+		Connection connection = null;
+		try{
+			connection = getConnection();
+
+			UserDao userDao = new UserDao();
+			User user = userDao.getUserFromId(connection, id);
+
+			commit(connection);
+			return user;
+		} catch(RuntimeException e){
+			 rollback(connection);
+			 throw e;
+		 } catch(Error e){
+			 rollback(connection);
+			 throw e;
+		 } finally{
+			 close(connection);
+		 }
+	}
+
 }
