@@ -7,8 +7,7 @@ public class UserMessage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	public int userId;
-	private int messageId;
+	private int userId;
 	private int loginId;
 	private int branchId;
 	private int departmentId;
@@ -33,14 +32,6 @@ public class UserMessage implements Serializable {
 		this.userId = userId;
 	}
 
-	public int GetMessageId() {
-		return messageId;
-	}
-
-	public void SetMessageId(int messageId) {
-		this.messageId = messageId;
-
-	}
 
 	public int getLoginId() {
 		return loginId;

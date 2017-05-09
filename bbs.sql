@@ -55,3 +55,25 @@ from
 	users, messages
 where
 	users.id = messages.user_id;
+	
+/*コメントを表示するためのビュー*/
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `user_message` AS
+    select 
+        `messages`.`id` AS `id`,
+        `messages`.`user_id` AS `user_id`,
+        `messages`.`title` AS `title`,
+        `messages`.`text` AS `text`,
+        `messages`.`category` AS `category`,
+        `users`.`name` AS `name`,
+		`users`.`branch_id` AS `branch_id`,
+		`users`.`department_id` AS `department_id`,
+        `messages`.`insert_date` AS `insert_date`
+    from
+        (`users`
+        join `messages`)
+    where
+        (`users`.`id` = `messages`.`user_id`)

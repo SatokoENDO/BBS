@@ -20,7 +20,7 @@ public class CommentDao {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO comments ( ");
 			sql.append("id");
-			sql.append("message_id");
+			sql.append(", message_id");
 			sql.append(", user_id");
 			sql.append(", text");
 			sql.append(", insert_date");
@@ -33,6 +33,7 @@ public class CommentDao {
 			sql.append(")");
 
 			ps = connection.prepareStatement(sql.toString());
+
 			ps.setInt(1, comment.getMessageId());
 			ps.setInt(2, comment.getUserId());
 			ps.setString(3, comment.getText());
@@ -45,6 +46,7 @@ public class CommentDao {
 				close(ps);
 			}
 	}
+
 
 	public List<Comment> getUserComment(Connection connection) {
 

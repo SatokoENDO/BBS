@@ -44,43 +44,43 @@ public class MessageServlet extends HttpServlet {
 			new MessageService().register(message);
 			response.sendRedirect("./");
 		} else {
-			session.setAttribute("messages", messages);
+			session.setAttribute("errormessages", messages);
 			response.sendRedirect("message");
 		}
 	}
 
-	private boolean isValid(HttpServletRequest request, List<String> messages) {
-		String subject = request.getParameter("title");
-		String body = request.getParameter("text");
+	private boolean isValid(HttpServletRequest request, List<String> errormessages) {
+		String title = request.getParameter("title");
+		String text = request.getParameter("text");
 		String category = request.getParameter("category");
 
-		if (subject.length() == 0) {
-			messages.add("投稿に失敗しました");
+		if (title.length() == 0) {
+			errormessages.add("投稿に失敗しました");
 
-			messages.add("件名を入力してください");
+			errormessages.add("件名を入力してください");
 		}
 
-		if (50 < subject.length()) {
-			messages.add("件名は50文字以下で入力してください");
+		if (50 < title.length()) {
+			errormessages.add("件名は50文字以下で入力してください");
 		}
 
 		if (category.length() == 0) {
-			messages.add("カテゴリーを入力してください");
+			errormessages.add("カテゴリーを入力してください");
 		}
 
 		if (10 < category.length()) {
-			messages.add("カテゴリーは10文字以下で入力してください");
+			errormessages.add("カテゴリーは10文字以下で入力してください");
 		}
 
-		if (body.length() == 0) {
-			messages.add("本文を入力してください");
+		if (text.length() == 0) {
+			errormessages.add("本文を入力してください");
 		}
 
-		if (1000 < body.length()) {
-			messages.add("本文は1000文字以下で入力してください");
+		if (1000 < text.length()) {
+			errormessages.add("本文は1000文字以下で入力してください");
 		}
 
-		if (messages.size() == 0) {
+		if (errormessages.size() == 0) {
 			return true;
 		} else {
 			return false;

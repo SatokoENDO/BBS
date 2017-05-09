@@ -37,6 +37,8 @@ public class CommentServlet extends HttpServlet{
 			comment.setText(text);
 			comment.setUserId(user.getId());
 			comment.setMessageId(Integer.parseInt(request.getParameter("messageId")));
+
+			System.out.println("message");
 			System.out.println(request.getParameter("messageId"));
 
 			new CommentService().register(comment);
