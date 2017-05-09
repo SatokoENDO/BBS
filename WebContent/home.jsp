@@ -9,22 +9,22 @@
 <html>
 <head>
 <script type="text/javascript">
-	function disp1(){
-		if(window.confirm('停止しますか？')){
+	function disp1() {
+		if (window.confirm('停止しますか？')) {
 			location.href = "admin";
 		} else {
 			return false;
 		}
 	}
-	function disp2(){
-		if(window.confirm('復活しますか？')){
+	function disp2() {
+		if (window.confirm('復活しますか？')) {
 			location.href = "admin";
 		} else {
 			return false;
 		}
 	}
-	function goDeleteServlet(){
-		if(window.confirm('本当に削除しますか？')){
+	function goDeleteServlet() {
+		if (window.confirm('本当に削除しますか？')) {
 			location.href = "admin";
 		} else {
 			return false;
@@ -38,25 +38,23 @@
 
 </head>
 <body>
-<Marquee onmouseover=this.stop() onmouseout=this.start()>
-<FONT color="#000000" size="5"><STRONG>掲示板ホーム</STRONG></FONT>
-</Marquee>
 
 	<div class="main-contents">
 		<div class="header">
 
 			<a href="message">新規投稿</a> <a href="login">ログアウト</a>
-			<c:if test="${loginUser.branchId == 1 && loginUser.departmentId == 1}">
-			<a href="admin">ユーザー管理</a>
-	</c:if>
+			<c:if
+				test="${loginUser.branchId == 1 && loginUser.departmentId == 1}">
+				<a href="admin">ユーザー管理</a>
+			</c:if>
 		</div>
-	<div class="loginUser">
-		<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
-	</div><br/><br/>
+		<div class="loginUser">
+			<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
+		</div>
+		<br /> <br />
 
 		<div class="messages">
 			<c:forEach items="${messages}" var="message">
-
 				<div class="name">
 					投稿者：
 					<c:out value="${message.name}" />
@@ -77,17 +75,35 @@
 					投稿日時：
 					<fmt:formatDate value="${message.insertDate}"
 						pattern="yyyy/MM/dd HH:mm:ss" />
-				</div><br/>
-				<div class = "comments-form">
-			<form action = "comment" method = "post">
+				</div>
+				<br />
 
-				<input type ="hidden" name = "messageId" value = "${message.id}">
-				<textarea name = "text" cols ="50" rows = "5" class = "comment-box"></textarea><br/>
-				<input type = "submit" value = "コメント">
-			</form>
-		</div><br/><br/>
+				<c:forEach items="${comments}" var="comment">
+					<c:if test="${comment.messageId==message.id}">
+						<div class="text">
+							コメント：
+							<c:out value="${comment.text}" />
+						</div>
+						<div class="name">
+							投稿者：
+							<c:out value="${comment.name}" />
+						</div>
+						<div class="date">
+							投稿日時：
+							<fmt:formatDate value="${comment.insertDate}"
+								pattern="yyyy/MM/dd HH:mm:ss" />
+						</div>
+						<br />
+					</c:if>
+				</c:forEach>
 
-
+				<div class="comments-form">
+					<form action="comment" method="post">
+						<input type="hidden" name="messageId" value="${message.id}">
+						<textarea name="text" cols="50" rows="5" class="comment-box"></textarea>
+						<br /> <input type="submit" value="コメント">
+					</form>
+				</div>
 			</c:forEach>
 		</div>
 	</div>

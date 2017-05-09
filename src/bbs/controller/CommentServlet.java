@@ -27,35 +27,35 @@ public class CommentServlet extends HttpServlet{
 		if (isValid(request, messages) == true) {
 			User user = (User) session.getAttribute("loginUser");
 
+
+
 			String text = request.getParameter("text");
 
 			text = text.replaceAll("\n","<br>");
 
 			session.setAttribute("messages", text);
 			comment.setText(text);
-			comment.setUserId((user.getId()));
+			comment.setUserId(user.getId());
 			comment.setMessageId(Integer.parseInt(request.getParameter("messageId")));
+			System.out.println(request.getParameter("messageId"));
 
 			new CommentService().register(comment);
-			messages.add("コメントに成功しました");
-			session.setAttribute("messages", messages);
 			response.sendRedirect("./");
 		} else {
-			session.setAttribute("messages", messages);
+			session.setAttribute("errorMessages", messages);
 			response.sendRedirect("./");
 		}
 	}
 
-	private boolean isValid(HttpServletRequest request, List<String> messages) {
-		//入力の確認
+	private boolean isValid(HttpServletRequest request, List<String> errorMessages) {
 		String comment = request.getParameter("text");
 		if (comment.length() == 0) {
-			messages.add("コメントを入力してください");
+			errorMessages.add("コメントを入力してください");
 		}
 		if (500 < comment.length()) {
-			messages.add("コメントは500文字以下で入力してください");
+			errorMessages.add("コメントは500文字以下で入力してください");
 		}
-		if (messages.size() == 0) {
+		if (errorMessages.size() == 0) {
 			return true;
 		} else {
 			return false;

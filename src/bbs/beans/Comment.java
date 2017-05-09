@@ -2,16 +2,24 @@ package bbs.beans;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private int id;
 	private int messageId;
 	private int userId;
 	private String text;
-	private Date date;
 	private Timestamp insertDate;
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getMessageId() {
 		return messageId;
@@ -29,13 +37,13 @@ public class Comment implements Serializable {
 		this.text = text;
 	}
 
-	public Date getdate() {
+	/*public Date getdate() {
 		return date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
+	}*/
 
 	public int getUserId() {
 		return userId;
