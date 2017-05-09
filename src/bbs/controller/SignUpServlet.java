@@ -55,7 +55,7 @@ public class SignUpServlet extends HttpServlet {
 
 		if (isValid(request, messages) == true) {
 			new UserService().register(user);
-			response.sendRedirect("home.jsp");
+			response.sendRedirect("./");
 		} else {
 			session.setAttribute("errorMessages", messages);
 			User editUser = user;

@@ -11,17 +11,17 @@
 <body>
 <div class = "main-contents">
 
-	<c:if test = "${not empty errorMassages}">
-		<div class ="errorMassages">
+	<c:if test = "${not empty errorMessages}">
+		<div class ="errorMessages">
 			<ul>
-				<c:forEach items = "${errorMassages}" var = "message">
+				<c:forEach items = "${errorMessages}" var = "message">
 					<li><c:out value = "${message}"/>
 				</c:forEach>
 			</ul>
 		</div>
-	<c:remove var = "errorMassages" scope = "session"/>
+	<c:remove var = "errorMessages" scope = "session"/>
 	</c:if>
-	<c:if test = "${empty errorMassages}">
+	<c:if test = "${empty errorMessages}">
 		<div class ="validationMessage">
 			<p><c:out value = "${validationMessage}"/></p>
 		</div>

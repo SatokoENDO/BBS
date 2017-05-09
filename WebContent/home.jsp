@@ -55,58 +55,68 @@
 
 		<div class="messages">
 			<c:forEach items="${messages}" var="message">
-				<hr size="10" width="500" color="black "align="left">
+				<hr size="10" width="500" color="black " align="left">
 				<br />
-					<div class="name">
-						投稿者：
-						<c:out value="${message.name}" />
-					</div>
-					<div class="title">
-						件名：
-						<c:out value="${message.title}" />
-					</div>
-					<div class="text">
-						本文：
-						<c:out value="${message.text}" />
-					</div>
-					<div class="category">
-						カテゴリー：
-						<c:out value="${message.category}" />
-					</div>
-					<div class="date">
-						投稿日時：
-						<fmt:formatDate value="${message.insertDate}"
-							pattern="yyyy/MM/dd HH:mm:ss" />
-					</div>
-					<br />
- 					<hr size="2" width="400" color="black "align="left">
-					<c:forEach items="${comments}" var="comment">
-						<c:if test="${comment.messageId==message.id}">
-							<div class="text">
-								コメント：
-								<c:out value="${comment.text}" />
-							</div>
-							<div class="name">
-								投稿者：
-								<c:out value="${comment.name}" />
-							</div>
-							<div class="date">
-								投稿日時：
-								<fmt:formatDate value="${comment.insertDate}"
-									pattern="yyyy/MM/dd HH:mm:ss" />
-							</div>
-							<br />
-						</c:if>
+				<div class="name">
+					投稿者：
+					<c:out value="${message.name}" />
+				</div>
+				<div class="title">
+					件名：
+					<c:out value="${message.title}" />
+				</div>
+				<div class="text">
+					本文：
+					<c:out value="${message.text}" />
+				</div>
+				<div class="category">
+					カテゴリー：
+					<c:out value="${message.category}" />
+				</div>
+				<div class="date">
+					投稿日時：
+					<fmt:formatDate value="${message.insertDate}"
+						pattern="yyyy/MM/dd HH:mm:ss" />
+				</div>
+				<c:if test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 }">
+				<td colspan="2"><div align="left">
+						<form action="deletemessage" method="post">
 
-			</c:forEach>
+								<input type="hidden" name="deletedId" value="${message.id}" />
+								<button type="submit" name="deleteMessage">投稿削除</button>
+						</form>
+					</div></td>
+				</c:if>
 
-			<div class="comments-form">
-				<form action="comment" method="post">
-					<input type="hidden" name="messageId" value="${message.id}">
-					<textarea name="text" cols="50" rows="5" class="comment-box"></textarea>
-					<br /> <input type="submit" value="コメント">
-				</form>
-			</div>
+				<br />
+				<hr size="2" width="400" color="black " align="left">
+				<c:forEach items="${comments}" var="comment">
+					<c:if test="${comment.messageId==message.id}">
+						<div class="text">
+							コメント：
+							<c:out value="${comment.text}" />
+						</div>
+						<div class="name">
+							投稿者：
+							<c:out value="${comment.name}" />
+						</div>
+						<div class="date">
+							投稿日時：
+							<fmt:formatDate value="${comment.insertDate}"
+								pattern="yyyy/MM/dd HH:mm:ss" />
+						</div>
+						<br />
+					</c:if>
+
+				</c:forEach>
+
+				<div class="comments-form">
+					<form action="comment" method="post">
+						<input type="hidden" name="messageId" value="${message.id}">
+						<textarea name="text" cols="50" rows="5" class="comment-box"></textarea>
+						<br /> <input type="submit" value="コメント">
+					</form>
+				</div>
 			</c:forEach>
 		</div>
 	</div>

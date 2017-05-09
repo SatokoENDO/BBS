@@ -63,5 +63,20 @@ public class MessageDao {
 		}
 	}
 
+	public void deleteMessage(Connection connection, int deletedId){
+		PreparedStatement ps = null;
+		try{
+			String sql = "DELETE FROM posts WHERE id = ?";
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1,  deletedId);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally{
+			close(ps);
+		}
+	}
+
 
 }

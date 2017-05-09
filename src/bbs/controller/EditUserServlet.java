@@ -47,7 +47,7 @@ public class EditUserServlet extends HttpServlet{
 
 			String validationMessage =  "更新完了";
 			session.setAttribute("validationMessage", validationMessage);
-			request.getRequestDispatcher("userupdated.jsp").forward(request, response);
+			request.getRequestDispatcher("updated.jsp").forward(request, response);
 
 		} else {
 			user.setLoginId(request.getParameter("loginId"));
@@ -58,7 +58,7 @@ public class EditUserServlet extends HttpServlet{
 			request.setAttribute("user", user);
 
 			session.setAttribute("errorMassages", messages);
-			request.getRequestDispatcher("userupdated.jsp").forward(request, response);
+			request.getRequestDispatcher("updated.jsp").forward(request, response);
 		}
 
 	}
@@ -67,11 +67,11 @@ public class EditUserServlet extends HttpServlet{
 
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
-		String passwordConfirmation = request.getParameter("checkPassword");
+		String checkPassword = request.getParameter("checkPassword");
 		String name = request.getParameter("name");
 
 
-		if(!password.equals(passwordConfirmation)){
+		if(!password.equals(checkPassword)){
 			messages.add("パスワードが一致しません");
 		}
 
