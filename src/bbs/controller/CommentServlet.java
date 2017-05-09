@@ -31,8 +31,6 @@ public class CommentServlet extends HttpServlet{
 
 			String text = request.getParameter("text");
 
-			text = text.replaceAll("\n","<br>");
-
 			session.setAttribute("messages", text);
 			comment.setText(text);
 			comment.setUserId(user.getId());
