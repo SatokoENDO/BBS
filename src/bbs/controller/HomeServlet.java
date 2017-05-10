@@ -1,6 +1,8 @@
 package bbs.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,8 +24,38 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
+		List<String> categories = new MessageService().getCategories();
+		request.setAttribute("categories", categories);
+		String category = request.getParameter("category");
 
-		List<UserMessage> userMessage = new MessageService().getMessage();
+		System.out.println(category);
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String startDate;
+		String startDateParameter = request.getParameter("startDate");
+
+		String endDate;
+		String endDateParameter = request.getParameter("endDate");
+
+		if(startDateParameter == null){
+			startDate = "2000-12-1";
+		}else if (startDateParameter.isEmpty()){
+			startDate = "2000-12-1";
+		} else {
+			startDate = startDateParameter;
+		}
+
+		if(endDateParameter == null){
+			endDate = sdf.format(date).toString();
+		}else if (endDateParameter.isEmpty()){
+			endDate = sdf.format(date).toString();
+		} else {
+			endDate = endDateParameter;
+		}
+
+		List<UserMessage> userMessage = new MessageService().getMessage(category, startDate, endDate);
 		request.setAttribute("messages", userMessage);
 
 		List<UserComment> userComment = new CommentService().getCommentList();

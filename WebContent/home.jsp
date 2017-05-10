@@ -31,7 +31,18 @@
 		<div class="loginUser">
 			<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
 		</div>
-		<br /> <br />
+		<br /><form action="./" method = "Get">
+
+		カテゴリ:<select name="category" size = "1">
+			<option value = "">全て</option>
+			<c:forEach items = "${categories}" var = "category">
+				<option value="${category}"><c:out value = "${category}"/></option>
+			</c:forEach>
+		</select><br/><br/>
+		日付:<input type = "date" name = "startDate">から<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "date" name = "endDate">まで
+		&nbsp;&nbsp;<input type = "submit" value = "絞込み">
+	</form> <br />
 
 		<div class="messages">
 			<c:forEach items="${messages}" var="message">

@@ -10,41 +10,47 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter("/*")
+/**
+ * Servlet Filter implementation class EncodeingFilter
+ */
+@WebFilter(description = "文字列エンコード用フィルター", urlPatterns = { "/*" })
 public class EncodingFilter implements Filter {
 
-	public static String INIT_PARAMETER_NAME_ENCODING = "encoding";
+    /** エンコード */
+    private final static String encoding = "UTF-8";
 
-	public static String DEFAULT_ENCODING = "UTF-8";
+    /**
+     * Default constructor.
+     */
+    public EncodingFilter() {
+        // TODO Auto-generated constructor stub
+    }
 
-	private String encoding;
+    /**
+     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+     */
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
+        // TODO Auto-generated method stub
+        // place your code here
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+        request.setCharacterEncoding(encoding);
+        response.setContentType("text/html; charset=" + encoding);
 
-		if (request.getCharacterEncoding() == null) {
-			request.setCharacterEncoding(encoding);
-		}
+        // pass the request along the filter chain
+        chain.doFilter(request, response);
+    }
 
-		chain.doFilter(request, response); // サーブレットを実行
+    @Override
+    public void destroy() {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
-	@Override
-	public void init(FilterConfig config) {
-		encoding = config.getInitParameter(INIT_PARAMETER_NAME_ENCODING);
-		if (encoding == null) {
-			System.out.println("EncodingFilter# デフォルトのエンコーディング(UTF-8)を利用します。");
-			encoding = DEFAULT_ENCODING;
-		} else {
-			System.out.println("EncodingFilter# 設定されたエンコーディング(" + encoding
-					+ ")を利用します。。");
-		}
-	}
+    @Override
+    public void init(FilterConfig arg0) throws ServletException {
+        // TODO 自動生成されたメソッド・スタブ
 
-	@Override
-	public void destroy() {
-	}
-
+    }
 }
