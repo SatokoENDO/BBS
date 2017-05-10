@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.service.MessageService;
-@WebServlet(urlPatterns = "/deleteMessage")
-public class DeleteMessageServlet extends HttpServlet{
+import bbs.service.CommentService;
+
+@WebServlet(urlPatterns = "/deleteComment")
+public class DeleteCommentServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)throws IOException, ServletException{
 		int deletedId = Integer.parseInt(request.getParameter("deletedId"));
-		new MessageService().deleteMessage(deletedId);
+		new CommentService().deleteComment(deletedId);
 
 		response.sendRedirect("./");
 	}

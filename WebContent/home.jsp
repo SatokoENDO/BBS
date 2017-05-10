@@ -8,36 +8,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript">
-	function disp1() {
-		if (window.confirm('停止しますか？')) {
-			location.href = "admin";
-		} else {
-			return false;
-		}
-	}
-	function disp2() {
-		if (window.confirm('復活しますか？')) {
-			location.href = "admin";
-		} else {
-			return false;
-		}
-	}
-	function goDeleteServlet() {
-		if (window.confirm('本当に削除しますか？')) {
-			location.href = "admin";
-		} else {
-			return false;
-		}
-	}
-</script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>掲示板</title>
+<title>掲示板ホーム</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
+<Marquee onmouseover=this.stop() onmouseout=this.start()>
+<FONT color="#000000" size="5"><STRONG>掲示板ホーム</STRONG></FONT>
+</Marquee>
 
 	<div class="main-contents">
 		<div class="header">
@@ -78,9 +58,10 @@
 					<fmt:formatDate value="${message.insertDate}"
 						pattern="yyyy/MM/dd HH:mm:ss" />
 				</div>
-				<c:if test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 }">
+				<c:if
+					test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
 				<td colspan="2"><div align="left">
-						<form action="deletemessage" method="post">
+						<form action="deleteMessage" method="post">
 
 								<input type="hidden" name="deletedId" value="${message.id}" />
 								<button type="submit" name="deleteMessage">投稿削除</button>
@@ -105,6 +86,14 @@
 							<fmt:formatDate value="${comment.insertDate}"
 								pattern="yyyy/MM/dd HH:mm:ss" />
 						</div>
+
+						<c:if
+							test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 || (loginUser.departmentId == 3 && comment.departmentId == 4 && loginUser.branchId == comment.branchId)}">
+							<form action = "deleteComment" method = "post">
+							<input type = "hidden" name = "deletedId" value = "${ comment.id }">
+								<input type = "submit" value = "コメント削除">
+						</form><br>
+						</c:if>
 						<br />
 					</c:if>
 

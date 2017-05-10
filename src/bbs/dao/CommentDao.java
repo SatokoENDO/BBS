@@ -95,25 +95,20 @@ public class CommentDao {
 		}
 	}
 
-
-
-	public void delete(Connection connection, Comment comment) {
-
+	public void deleteComment(Connection connection, int deletedId){
 		PreparedStatement ps = null;
-		try {
-			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM comments WHERE id = ?");
-
-			ps = connection.prepareStatement(sql.toString());
-
-			ps.setInt(1, comment.getId());
+		try{
+			String sql = "DELETE FROM comments WHERE id = ?";
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1,  deletedId);
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
-		} finally {
+		} finally{
 			close(ps);
 		}
 	}
+
 
 }

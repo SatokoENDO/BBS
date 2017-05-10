@@ -22,17 +22,77 @@ public class MessageService {
 			messageDao.insert(connection, message);
 
 			commit(connection);
-		 } catch(RuntimeException e){
-			 rollback(connection);
-			 throw e;
-		 } catch(Error e){
-			 throw e;
-		 } finally{
-			 close(connection);
-		 }
+		} catch(RuntimeException e){
+			rollback(connection);
+			throw e;
+		} catch(Error e){
+			throw e;
+		} finally{
+			close(connection);
 		}
+	}
 
 	private static final int limitNum = 1000;
+
+	public List<UserMessage> getMessage(String category, String start, String end){
+		Connection connection = null;
+		try{
+			connection = getConnection();
+
+			UserMessageDao userMessageDao = new UserMessageDao();
+			List<UserMessage> ret = userMessageDao.getUserMessage(connection, category, start, end);
+
+			commit(connection);
+			return ret;
+		} catch(RuntimeException e){
+			rollback(connection);
+			throw e;
+		} catch(Error e){
+			throw e;
+		} finally{
+			close(connection);
+		}
+	}
+
+	public void deleteMessage(int deletedId){
+		Connection connection = null;
+		try{
+			connection = getConnection();
+
+			MessageDao messageDao = new MessageDao();
+			messageDao.deleteMessage(connection, deletedId);
+
+			commit(connection);
+		} catch(RuntimeException e){
+			rollback(connection);
+			throw e;
+		} catch(Error e){
+			rollback(connection);
+			throw e;
+		} finally{
+			close(connection);
+		}
+	}
+
+	public List<String> getCategories(){
+		Connection connection = null;
+		try{
+			connection = getConnection();
+
+			UserMessageDao userMessageDao = new UserMessageDao();
+			List<String> ret = userMessageDao.getCategories(connection);
+
+			commit(connection);
+			return ret;
+		} catch(RuntimeException e){
+			rollback(connection);
+			throw e;
+		} catch(Error e){
+			throw e;
+		} finally{
+			close(connection);
+		}
+	}
 
 	public List<UserMessage> getMessage() {
 
@@ -56,25 +116,4 @@ public class MessageService {
 			close(connection);
 		}
 	}
-
-	public void deleteMessage(int deletedId){
-		Connection connection = null;
-		try{
-			connection = getConnection();
-
-			MessageDao messageDao = new MessageDao();
-			messageDao.delete(connection, deletedId);
-
-			commit(connection);
-		} catch(RuntimeException e){
-			 rollback(connection);
-			 throw e;
-		} catch(Error e){
-			 rollback(connection);
-			 throw e;
-		} finally{
-			 close(connection);
-		}
-	}
-
 }

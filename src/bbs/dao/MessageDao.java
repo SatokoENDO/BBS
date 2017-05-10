@@ -16,29 +16,29 @@ public class MessageDao {
 		PreparedStatement ms = null;
 		try {
 			StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO messages ( ");
-		sql.append("id");
-		sql.append(", user_id");
-		sql.append(", title");
-		sql.append(", text");
-		sql.append(", category");
-		sql.append(", insert_date");
-		sql.append(") VALUES (");
-		sql.append("null");
-		sql.append(", ?");
-		sql.append(", ?");
-		sql.append(", ?");
-		sql.append(", ?");
-		sql.append(", CURRENT_TIMESTAMP");
-		sql.append(")");
+			sql.append("INSERT INTO messages ( ");
+			sql.append("id");
+			sql.append(", user_id");
+			sql.append(", title");
+			sql.append(", text");
+			sql.append(", category");
+			sql.append(", insert_date");
+			sql.append(") VALUES (");
+			sql.append("null");
+			sql.append(", ?");
+			sql.append(", ?");
+			sql.append(", ?");
+			sql.append(", ?");
+			sql.append(", CURRENT_TIMESTAMP");
+			sql.append(")");
 
-		ms = connection.prepareStatement(sql.toString());
-		ms.setInt(1, message.getUserId());
-		ms.setString(2, message.getTitle());
-		ms.setString(3, message.getText());
-		ms.setString(4, message.getCategory());
+			ms = connection.prepareStatement(sql.toString());
+			ms.setInt(1, message.getUserId());
+			ms.setString(2, message.getTitle());
+			ms.setString(3, message.getText());
+			ms.setString(4, message.getCategory());
 
-		ms.executeUpdate();
+			ms.executeUpdate();
 
 
 		} catch (SQLException e) {
@@ -48,7 +48,7 @@ public class MessageDao {
 		}
 	}
 
-	public void delete(Connection connection, int deleted_id){
+	public void deleteMessage(Connection connection, int deleted_id){
 		PreparedStatement ps = null;
 		try{
 			String sql = "DELETE FROM messages WHERE id = ?";
@@ -62,21 +62,4 @@ public class MessageDao {
 			close(ps);
 		}
 	}
-
-	public void deleteMessage(Connection connection, int deletedId){
-		PreparedStatement ps = null;
-		try{
-			String sql = "DELETE FROM posts WHERE id = ?";
-			ps = connection.prepareStatement(sql);
-			ps.setInt(1,  deletedId);
-
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally{
-			close(ps);
-		}
-	}
-
-
 }

@@ -16,17 +16,24 @@ import bbs.exception.SQLRuntimeException;
 
 public class UserMessageDao {
 
-	public List<UserMessage> getUserMessage(Connection connection, int limitNum){
+	public List<UserMessage> getUserMessage(Connection connection, String category, String start, String end){
 		PreparedStatement ps = null;
 		try{
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM user_message ");
-			sql.append("ORDER BY insert_date DESC  ");
+			sql.append("WHERE '"+ start + "' <= insert_date AND '" + end + "' >= insert_date ");
+			if(category == null || category.isEmpty()){
+			} else{
+				sql.append("AND category = ? ");
+			}
+			sql.append("ORDER BY insert_date DESC");
 
 			ps = connection.prepareStatement(sql.toString());
-
-			System.out.println(ps.toString());
-
+			if(category == null || category.isEmpty()){
+			}else{
+				ps.setString(1, category);
+			}
+			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 
 			List<UserMessage> ret = toUserMessageList(rs);
@@ -77,4 +84,64 @@ public class UserMessageDao {
 		}
 
 	}
+
+	public List<String> getCategories(Connection connection){
+		PreparedStatement ps = null;
+		try{
+			String sql = "SELECT category FROM user_message GROUP BY category";
+			ps = connection.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			List<String> categories = toCategoriesList(rs);
+			//System.out.println(categories);
+			return categories;
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close (ps);
+		}
+	}
+
+	private List<String> toCategoriesList(ResultSet rs)
+		throws SQLException {
+		List<String> ret = new ArrayList<String>();
+		try{
+			while(rs.next()){
+				String category = rs.getString("category");
+				ret.add(category);
+			}
+			return ret;
+		} finally {
+			close(rs);
+		}
+	}
+
+
+	public List<UserMessage> getUserMessage(Connection connection, int limitNum){
+		PreparedStatement ps = null;
+		try{
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM user_message ");
+			sql.append("ORDER BY insert_date DESC  ");
+
+			ps = connection.prepareStatement(sql.toString());
+
+			System.out.println(ps.toString());
+
+			ResultSet rs = ps.executeQuery();
+
+			List<UserMessage> ret = toUserMessageList(rs);
+
+			return ret;
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close (ps);
+		}
+	}
+
+
+
+
+
 }

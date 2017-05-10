@@ -36,7 +36,7 @@
 			<p>
 				<label for = "title">件名(50文字以下)</label>
 			</p>
-			<input name = "title"/><br>
+			<textarea name="title" cols="50" rows="1" class="text-box"></textarea>
 			<br>
 
 			<p>
@@ -48,7 +48,7 @@
 			<p>
 				<label for = "text">本文(1000文字以下)</label>
 			</p>
-			<textarea name = "text" class = "input-box" ></textarea>
+			<textarea name="text" cols="50" rows="5" class="text-box"></textarea>
 			<p>
 				<input type = "submit" value = "投稿">
 			</p>

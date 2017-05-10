@@ -42,20 +42,20 @@ public class CommentServlet extends HttpServlet{
 			new CommentService().register(comment);
 			response.sendRedirect("./");
 		} else {
-			session.setAttribute("errorMessages", messages);
+			session.setAttribute("commentErrorMessages", messages);
 			response.sendRedirect("./");
 		}
 	}
 
-	private boolean isValid(HttpServletRequest request, List<String> errorMessages) {
+	private boolean isValid(HttpServletRequest request, List<String> commentErrorMessages) {
 		String comment = request.getParameter("text");
 		if (comment.length() == 0) {
-			errorMessages.add("コメントを入力してください");
+			commentErrorMessages.add("コメントを入力してください");
 		}
 		if (500 < comment.length()) {
-			errorMessages.add("コメントは500文字以下で入力してください");
+			commentErrorMessages.add("コメントは500文字以下で入力してください");
 		}
-		if (errorMessages.size() == 0) {
+		if (commentErrorMessages.size() == 0) {
 			return true;
 		} else {
 			return false;

@@ -27,8 +27,6 @@ public class HomeServlet extends HttpServlet {
 		request.setAttribute("messages", userMessage);
 
 		List<UserComment> userComment = new CommentService().getCommentList();
-		//System.out.println("a");
-		//System.out.println(userComment.size());
 		request.setAttribute("comments", userComment);
 
 		request.getRequestDispatcher("home.jsp").forward(request, response);

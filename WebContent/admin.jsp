@@ -6,6 +6,14 @@
 <html>
 <head>
 
+<c:if test="${ loginUser.branchId != 1 && loginUser.departmentId != 1}">
+	<blink>
+		<font color="#FF0000" size="5">アクセス権限がありません。<br>1秒後にホーム画面に遷移します。
+		</font>
+	</blink>
+	<meta http-equiv="refresh" content="1; url=./">
+</c:if>
+
 <script type="text/javascript">
 	function check1(){
 		if(window.confirm('本当によろしいですか？')){
@@ -30,14 +38,14 @@
 <body>
 
 	<Marquee onmouseover=this.stop() onmouseout=this.start()>
-<FONT color="#000000" size="5"><STRONG>ユーザー管理</STRONG></FONT>
-</Marquee>
+		<FONT color="#000000" size="5"><STRONG>ユーザー管理</STRONG></FONT>
+	</Marquee>
 
 	<br>
 	<div class="header">
-
-			<a href="./">ホーム</a> <a href="login">ログアウト</a> <a href="signup">新規ユーザー登録</a>
-		</div><br>
+<a href="./">ホーム</a> <a href="login">ログアウト</a> <a href="signup">新規ユーザー登録</a>
+	</div>
+	<br>
 
 
 	<div class="admin">
@@ -51,44 +59,58 @@
 				<th>停止・復活</th>
 				<th>ユーザー削除</th>
 			</tr>
-			<c:forEach items = "${ users }" var = "user">
-		<tr>
-			<td><div class = "loginId"><c:out value = "${ user.loginId }" /></div></td>
-			<td><div class = "name"><c:out value = "${ user.name }" /></div></td>
-			<td><div class = "branchId"><c:out value = "${ user.branchId }" /></div></td>
-			<td><div class = "departmentId"><c:out value = "${ user.departmentId }" /></div></td>
+			<c:forEach items="${ users }" var="user">
+				<tr>
+					<td><div class="loginId">
+							<c:out value="${ user.loginId }" />
+						</div></td>
+					<td><div class="name">
+							<c:out value="${ user.name }" />
+						</div></td>
+					<td><div class="branchId">
+							<c:out value="${ user.branchId }" />
+						</div></td>
+					<td><div class="departmentId">
+							<c:out value="${ user.departmentId }" />
+						</div></td>
 
-			<td>
-			<form action = "edituser" method = "get">
-			<input type ="hidden" name = "userId" value = "${user.id}">
-			<input type="submit" value = "編集" onclick = "location.href = 'edituser'">
-			</form>
-		</td>
+					<td>
+						<form action="edituser" method="get">
+							<input type="hidden" name="userId" value="${user.id}"> <input
+								type="submit" value="編集" onclick="location.href = 'edituser'">
+						</form>
+					</td>
 
-			<td><c:if test = "${ user.id != loginUser.id }">
-				<form action = "admin" method = "post" onClick = "return check1()">
-					<input type = "hidden" name = "userId" value = "${user.id}">
-					<c:if test = "${ user.isLocked == 0 }">
-						<input type = "hidden" name = "isLocked" value = "1">
-						<p><input type = "submit" value = "停止中" ></p>
-					</c:if>
-					<c:if test = "${ user.isLocked == 1 }">
-						<input type = "hidden" name = "isLocked" value = "0">
-						<p><input type = "submit" value = "利用可能" ></p>
-					</c:if>
-				</form>
-			</c:if></td>
+					<td><c:if test="${ user.id != loginUser.id }">
+							<form action="admin" method="post" onClick="return check1()">
+								<input type="hidden" name="userId" value="${user.id}">
+								<c:if test="${ user.isLocked == 0 }">
+									<input type="hidden" name="isLocked" value="1">
+									<p>
+										<input type="submit" value="停止中">
+									</p>
+								</c:if>
+								<c:if test="${ user.isLocked == 1 }">
+									<input type="hidden" name="isLocked" value="0">
+									<p>
+										<input type="submit" value="利用可能">
+									</p>
+								</c:if>
+							</form>
+						</c:if></td>
 
-			<td><c:if test = "${ user.id != loginUser.id }">
-				<form action = "delete" method = "post" onClick = "return check2()">
-					<input type = "hidden" name = "id" value = "${user.id}">
-					<p><input  type = "submit" value = "ユーザー削除"></p>
-				</form>
-			</c:if></td>
+					<td><c:if test="${ user.id != loginUser.id }">
+							<form action="delete" method="post" onClick="return check2()">
+								<input type="hidden" name="id" value="${user.id}">
+								<p>
+									<input type="submit" value="ユーザー削除">
+								</p>
+							</form>
+						</c:if></td>
 
-		</tr>
-	</c:forEach>
-	</table>
-			</div>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 </body>
 </html>
