@@ -33,14 +33,14 @@
 		</div>
 		<br /><form action="./" method = "Get">
 
-		カテゴリ:<select name="category" size = "1">
+		カテゴリ:&nbsp;<select name="category" size = "1">
 			<option value = "">全て</option>
 			<c:forEach items = "${categories}" var = "category">
 				<option value="${category}"><c:out value = "${category}"/></option>
 			</c:forEach>
 		</select><br/><br/>
-		日付:<input type = "date" name = "startDate">から<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "date" name = "endDate">まで
+		日付:&nbsp;<input type = "date" name = "startDate">から<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "date" name = "endDate">まで
 		&nbsp;&nbsp;<input type = "submit" value = "絞込み">
 	</form> <br />
 

@@ -74,8 +74,8 @@ public class SignUpServlet extends HttpServlet {
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 		String checkPassword = request.getParameter("checkPassword");
-
-
+		int branchId = Integer.parseInt(request.getParameter("branchId"));
+		int departmentId =Integer.parseInt(request.getParameter("departmentId"));
 
 		if (loginId.length() < 6 || loginId.length() > 20) {
 			messages.add("ログインIDの文字数は6文字以上20文字以下で入力してください");
@@ -103,6 +103,14 @@ public class SignUpServlet extends HttpServlet {
 
 		} else if (name.length() > 10) {
 			messages.add("名前は10文字以下で入力してください");
+		}
+
+		if(branchId == 1 && departmentId == 3){
+			messages.add("本社の方は、店長では登録できません");
+		}
+
+		if(branchId != 1 && departmentId <= 2){
+			messages.add("支店の方は、店長か社員です");
 		}
 
 		if (messages.size() == 0) {

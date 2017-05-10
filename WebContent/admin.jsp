@@ -6,14 +6,6 @@
 <html>
 <head>
 
-<c:if test="${ loginUser.branchId != 1 && loginUser.departmentId != 1}">
-	<blink>
-		<font color="#FF0000" size="5">アクセス権限がありません。<br>1秒後にホーム画面に遷移します。
-		</font>
-	</blink>
-	<meta http-equiv="refresh" content="1; url=./">
-</c:if>
-
 <script type="text/javascript">
 	function check1(){
 		if(window.confirm('本当によろしいですか？')){

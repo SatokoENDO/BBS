@@ -18,10 +18,10 @@
 	<input name = "loginId" value = "${editUser.loginId}" />(半角英数字6～20字)<br/>
 
 	<label for = "password">パスワード</label>
-	<input name = "password"/>(記号含む半角文字6～255字)<br/>
+	<input type="password" name = "password"/>(記号含む半角文字6～255字)<br/>
 
 	<label for = "checkPassword">パスワードの確認</label>
-	<input name = "checkPassword"/><br/>
+	<input type="password" name = "checkPassword"/><br/>
 
 	<label for = "name">名前</label>
 	<input name = "name" value = "${editUser.name }"/>(10字以内)<br/>

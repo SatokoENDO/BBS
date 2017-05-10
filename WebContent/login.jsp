@@ -28,10 +28,10 @@
 <form action = "login" method = "post">
 
 	<label for = "loginId">ログインID</label>
-	<input name = "loginId" id = "loginId"><br/>
+	&nbsp;<input name = "loginId" id = "loginId"><br/>
 
 	<label for = "password">パスワード</label>
-	<input name = "password" type ="password" id ="password"/><br/>
+	&nbsp;<input name = "password" type ="password" id ="password"/><br/>
 
 	<br>
 	<br><input type = "submit" value ="ログイン"><br/>
