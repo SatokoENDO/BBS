@@ -52,7 +52,7 @@ public class CommentServlet extends HttpServlet{
 		if (comment.length() == 0) {
 			commentErrorMessages.add("コメントを入力してください");
 		}
-		if (500 < comment.length()) {
+		if (comment.length()> 500) {
 			commentErrorMessages.add("コメントは500文字以下で入力してください");
 		}
 		if (commentErrorMessages.size() == 0) {

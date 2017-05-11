@@ -24,8 +24,8 @@
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/common.css" rel="stylesheet" type="text/css">
 <title>ユーザー管理</title>
-<link rel="stylesheet" type="text/css" href="css/admin.css" />
 </head>
 <body>
 

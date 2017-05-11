@@ -95,6 +95,11 @@ public class EditUserServlet extends HttpServlet{
 		if(password.length() >= 255 || password.length() < 6 || !password.matches("[ -~｡-ﾟ]+$")){
 			messages.add("パスワードは6文字以上255文字以下の半角文字です");
 		}
+
+		if(name.length() ==0){
+			messages.add("名前が入力されていません");
+		}
+
 		if(name.length() >= 10){
 			messages.add("名前は10文字以下です");
 		}

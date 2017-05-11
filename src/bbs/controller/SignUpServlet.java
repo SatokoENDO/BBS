@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
-
 import bbs.beans.Branch;
 import bbs.beans.Department;
 import bbs.beans.User;
@@ -91,11 +89,11 @@ public class SignUpServlet extends HttpServlet {
 			messages.add("パスワードは6文字以上255文字以下の半角文字です");
 		}
 
-		if (!password.equals(checkPassword)) {
+		if (password!=checkPassword) {
 			messages.add("パスワードが確認用と一致しません");
 		}
 
-		if (StringUtils.isEmpty(name) == true) {
+		if (name.length() ==0) {
 			messages.add("名前を入力してください");
 
 		} else if (name.length() > 10) {
