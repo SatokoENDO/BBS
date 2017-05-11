@@ -45,8 +45,8 @@
 			<tr>
 				<th>ログインID</th>
 				<th>名称</th>
-				<th>支店</th>
-				<th>部署・役職</th>
+				<th>支店ID</th>
+				<th>部署ID</th>
 				<th>編集</th>
 				<th>停止・復活</th>
 				<th>ユーザー削除</th>
