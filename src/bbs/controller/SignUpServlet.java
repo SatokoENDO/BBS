@@ -29,13 +29,13 @@ public class SignUpServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 
 
-		List<Branch> branch = new UserService().branch();
-		List<Department> department = new UserService().department();
-		HttpSession session = request.getSession();
-		session.setAttribute("branchId", branch);
-		session.setAttribute("departmentId", department);
+		List<Branch> branches = new BranchService().getBranchList();
+		request.setAttribute("branches", branches);
 
+		List<Department> departments = new DepartmentService().getDepartmentList();
+		request.setAttribute("departments", departments);
 		request.getRequestDispatcher("signup.jsp").forward(request, response);
+
 	}
 
 	@Override
@@ -43,6 +43,8 @@ public class SignUpServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 
 		List<String> messages = new ArrayList<String>();
+		HttpSession session = request.getSession();
+
 		User user = new User();
 		user.setLoginId(request.getParameter("loginId"));
 		user.setPassword(request.getParameter("password"));
@@ -51,21 +53,22 @@ public class SignUpServlet extends HttpServlet {
 		user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
 		user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 
-		HttpSession session = request.getSession();
 
 		if (isValid(request, messages) == true) {
 			new UserService().register(user);
-			response.sendRedirect("./");
-		} else {
-			session.setAttribute("errorMessages", messages);
-			User editUser = user;
-			request.setAttribute("editUser", editUser);
-			List<Branch> branches = new BranchService().select();
-			request.setAttribute("branches", branches);
-			List<Department> departments = new DepartmentService().select();
-			request.setAttribute("departments", departments);
+			response.sendRedirect("./admin");
 
-			request.getRequestDispatcher("signup.jsp").forward(request, response);
+		} else {
+			User errorUser = new User();
+			errorUser.setName(request.getParameter("name"));
+			errorUser.setLoginId(request.getParameter("loginId"));
+			errorUser.setPassword(request.getParameter("password"));
+
+			errorUser.setBranchId(Integer.parseInt(request.getParameter("branchId")));
+			errorUser.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
+			session.setAttribute("errorUser", errorUser);
+			session.setAttribute("errorMessages", messages);
+			response.sendRedirect("signup");
 		}
 	}
 
@@ -75,27 +78,21 @@ public class SignUpServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String checkPassword = request.getParameter("checkPassword");
 		int branchId = Integer.parseInt(request.getParameter("branchId"));
+		String stringBranchId = String.valueOf(branchId);
 		int departmentId =Integer.parseInt(request.getParameter("departmentId"));
+		String stringDepartmentId = String.valueOf(departmentId);
 
-		if (loginId.length() < 6 || loginId.length() > 20) {
-			messages.add("ログインIDの文字数は6文字以上20文字以下で入力してください");
 
-		} else if (!loginId.matches("[a-zA-Z0-9]{6,20}")){
-			messages.add("ログインIDは半角英数字で入力してください");
+		if(loginId.length() >=20 ||  loginId.length() < 6 || !loginId.matches("[0-9a-zA-Z_]+$")){
+			messages.add("ログインIDは6文字以上20文字以下の半角英数字です");
 		}
 
-		if (StringUtils.isEmpty(password) == true) {
-			messages.add("パスワードを入力してください");
-
-		} else if (password.length() < 6 || password.length() > 20) {
-			messages.add("パスワードの文字数は6文字以上20文字以下で入力してください");
-
-		} else if (!password.matches("[a-zA-Z0-9]{6,255}")){
-			messages.add("パスワードは半角英数字で入力してください");
+		if(password.length() >= 255 || password.length() < 6 || !password.matches("[ -~｡-ﾟ]+$")){
+			messages.add("パスワードは6文字以上255文字以下の半角文字です");
 		}
 
 		if (!password.equals(checkPassword)) {
-			messages.add("パスワードが確認用と一致しません。");
+			messages.add("パスワードが確認用と一致しません");
 		}
 
 		if (StringUtils.isEmpty(name) == true) {
@@ -103,6 +100,14 @@ public class SignUpServlet extends HttpServlet {
 
 		} else if (name.length() > 10) {
 			messages.add("名前は10文字以下で入力してください");
+		}
+
+		if(branchId >= 5 || stringBranchId.length() >1 || !stringBranchId.matches("[0-9]")){
+			messages.add("存在しない支店IDです");
+		}
+
+		if(departmentId >= 5 || stringDepartmentId.length() >1 || !stringDepartmentId.matches("[0-9]")){
+			messages.add("存在しない部署IDです");
 		}
 
 		if(branchId == 1 && departmentId == 3){

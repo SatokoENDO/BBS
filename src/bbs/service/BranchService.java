@@ -11,15 +11,18 @@ import bbs.dao.BranchDao;
 
 public class BranchService {
 
-	public List<Branch> select() {
+	public List<Branch> getBranchList() {
+
 		Connection connection = null;
 		try {
 			connection = getConnection();
-			BranchDao branchDao = new BranchDao();
-			List<Branch> branch = branchDao.getBranchList(connection);
+
+			BranchDao listDao = new BranchDao();
+			List<Branch> ret = listDao.getBranchList(connection);
 
 			commit(connection);
-			return branch;
+
+			return ret;
 		} catch (RuntimeException e) {
 			rollback(connection);
 			throw e;
@@ -30,4 +33,5 @@ public class BranchService {
 			close(connection);
 		}
 	}
+
 }

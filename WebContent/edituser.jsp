@@ -26,11 +26,25 @@
 	<label for = "name">名前</label>
 	<input name = "name" value = "${editUser.name }"/>(10字以内)<br/>
 
-	<label for = "branchId">支店</label>
-	<input name = "branchId" value = "${editUser.branchId}" />(本社:1　A支店：2　B支店：3　C支店:4)<br/>
+	<label for="departmentId">所属支店</label>
 
-	<label for = "departmentId">部署</label>
-	<input name = "departmentId" value = "${editUser.departmentId }" >(総務部:1　情報部：2　支店長：3　社員：4)<br/>
+						<select name="branchId">
+				<c:forEach items="${branches}" var="branch">
+						<option value="${branch.id}">
+							<c:out value="${branch.name}" />
+						</option>
+				</c:forEach>
+			</select><br />
+
+	<label for="departmentId">部署・役職</label>
+
+						<select name="departmentId">
+				<c:forEach items="${departments}" var="department">
+						<option value="${department.id}">
+							<c:out value="${department.name}" />
+						</option>
+				</c:forEach>
+			</select><br />
 
 	<input type = "submit" value = "更新"/>
 

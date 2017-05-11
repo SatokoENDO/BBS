@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bbs.beans.Branch;
+import bbs.beans.Department;
 import bbs.beans.User;
 import bbs.service.AdminService;
+import bbs.service.BranchService;
+import bbs.service.DepartmentService;
 import bbs.service.UserService;
 
 @WebServlet(urlPatterns = { "/edituser" })
@@ -23,6 +27,13 @@ public class EditUserServlet extends HttpServlet{
 			HttpServletResponse response) throws IOException, ServletException{
 		int id = Integer.parseInt(request.getParameter("userId"));
 		User editUser = new AdminService().getUser(id);
+
+		List<Branch> branches = new BranchService().getBranchList();
+		request.setAttribute("branches", branches);
+
+		List<Department> departments = new DepartmentService().getDepartmentList();
+		request.setAttribute("departments", departments);
+
 		request.setAttribute("editUser", editUser);
 		request.getRequestDispatcher("edituser.jsp").forward(request, response);
 	}
@@ -45,7 +56,7 @@ public class EditUserServlet extends HttpServlet{
 			new UserService().update(user);
 
 
-			String validationMessage =  "更新完了";
+			String validationMessage =  "更新完了しました";
 			session.setAttribute("validationMessage", validationMessage);
 			request.getRequestDispatcher("updated.jsp").forward(request, response);
 
@@ -57,7 +68,7 @@ public class EditUserServlet extends HttpServlet{
 
 			request.setAttribute("user", user);
 
-			session.setAttribute("errorMassages", messages);
+			session.setAttribute("errorMessages", messages);
 			request.getRequestDispatcher("updated.jsp").forward(request, response);
 		}
 
@@ -69,6 +80,8 @@ public class EditUserServlet extends HttpServlet{
 		String password = request.getParameter("password");
 		String checkPassword = request.getParameter("checkPassword");
 		String name = request.getParameter("name");
+		int branchId = Integer.parseInt(request.getParameter("branchId"));
+		int departmentId =Integer.parseInt(request.getParameter("departmentId"));
 
 
 		if(!password.equals(checkPassword)){
@@ -78,12 +91,30 @@ public class EditUserServlet extends HttpServlet{
 		if(loginId.length() >=20 ||  loginId.length() < 6 || !loginId.matches("[0-9a-zA-Z_]+$")){
 			messages.add("ログインIDは6文字以上20文字以下の半角英数字です");
 		}
+
 		if(password.length() >= 255 || password.length() < 6 || !password.matches("[ -~｡-ﾟ]+$")){
 			messages.add("パスワードは6文字以上255文字以下の半角文字です");
 		}
 		if(name.length() >= 10){
 			messages.add("名前は10文字以下です");
 		}
+
+		if(branchId >= 5){
+			messages.add("存在しない支店IDです");
+		}
+
+		if(departmentId >= 5){
+			messages.add("存在しない部署IDです");
+		}
+
+		if(branchId == 1 && departmentId == 3){
+			messages.add("本社の方は、店長では登録できません");
+		}
+
+		if(branchId != 1 && departmentId <= 2){
+			messages.add("支店の方は、店長か社員です");
+		}
+
 		if(messages.size() == 0){
 			return true;
 		} else {

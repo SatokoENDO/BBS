@@ -78,10 +78,5 @@ public class User implements Serializable {
 		this.isLocked = isLocked;
 	}
 
-	public void setcheckPassword(String parameter) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
 
 }
