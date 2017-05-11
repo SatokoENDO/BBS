@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 			throws IOException, ServletException {
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
+	@SuppressWarnings("null")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -40,7 +41,8 @@ public class LoginServlet extends HttpServlet {
 		if(user != null){
 			session.setAttribute("loginUser", user);
 			response.sendRedirect("./");
-		} else {
+
+		} else{
 			messages.add("ログインに失敗しました");
 			session.setAttribute("errorMessages", messages);
 			response.sendRedirect("login");

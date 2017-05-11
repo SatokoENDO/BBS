@@ -89,7 +89,7 @@ public class SignUpServlet extends HttpServlet {
 			messages.add("パスワードは6文字以上255文字以下の半角文字です");
 		}
 
-		if (password!=checkPassword) {
+		if (!password.equals(checkPassword)) {
 			messages.add("パスワードが確認用と一致しません");
 		}
 

@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bbs.beans.User;
 import bbs.service.AdminService;
@@ -19,7 +18,6 @@ public class AdminServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)throws IOException, ServletException{
-		HttpSession session = request.getSession();
 		List<User> users = new AdminService().getUsers();
 
 		request.setAttribute("users", users);

@@ -59,7 +59,7 @@
 				</div>
 				<div class="text">
 					本文：
-					<c:out value="${message.text}" />
+					<pre><c:out value="${message.text}" /></pre>
 				</div>
 				<div class="category">
 					カテゴリー：
@@ -71,7 +71,7 @@
 						pattern="yyyy/MM/dd HH:mm:ss" />
 				</div>
 				<c:if
-					test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
+					test="${ (loginUser.branchId == 1 && loginUser.departmentId == 2) || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
 				<td colspan="2"><div align="left">
 						<form action="deleteMessage" method="post">
 
@@ -87,7 +87,7 @@
 					<c:if test="${comment.messageId==message.id}">
 						<div class="text">
 							コメント：
-							<c:out value="${comment.text}" />
+							<pre><c:out value="${comment.text}" /></pre>
 						</div>
 						<div class="name">
 							投稿者：
@@ -100,7 +100,7 @@
 						</div>
 
 						<c:if
-							test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 || (loginUser.departmentId == 3 && comment.departmentId == 4 && loginUser.branchId == comment.branchId)}">
+							test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
 							<form action = "deleteComment" method = "post">
 							<input type = "hidden" name = "deletedId" value = "${ comment.id }">
 								<input type = "submit" value = "コメント削除">

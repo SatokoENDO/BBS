@@ -24,6 +24,7 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
+
 		List<String> categories = new MessageService().getCategories();
 		request.setAttribute("categories", categories);
 		String category = request.getParameter("category");

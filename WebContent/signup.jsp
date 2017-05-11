@@ -34,10 +34,10 @@
 		<th>ログインID</th><td><input type="text" name="loginId" value="${loginId}" /></td>
 	</tr>
 	<tr>
-		<th>パスワード</th><td><input type="password" name="password" /></td>
+		<th>パスワード</th><td><input type="text" type="password" name="password" /></td>
 	</tr>
 	<tr>
-		<th>パスワード(確認)</th><td><input type="password" name="checkPassword" /></td>
+		<th>パスワード(確認)</th><td><input type="text" type="password" name="checkPassword" /></td>
 	</tr>
 	<tr>
 		<th>名前</th><td><input type="text" name="name" value="${name}" /></td>

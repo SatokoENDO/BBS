@@ -12,7 +12,7 @@ public class User implements Serializable {
 	private String name;
 	private int branchId;
 	private int departmentId;
-	private String isLocked;
+	public String isLocked;
 
 	public int getId() {
 		return id;

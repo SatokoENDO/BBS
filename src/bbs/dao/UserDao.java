@@ -125,10 +125,11 @@ public class UserDao {
 		PreparedStatement ps = null;
 			try {
 				StringBuilder sql = new StringBuilder();
-				sql.append("SELECT * FROM users WHERE login_id = ? AND password = ? ;");
+				sql.append("SELECT * FROM users WHERE login_id = ? AND password = ? AND is_locked = ?;");
 				ps = connection.prepareStatement(sql.toString());
 				ps.setString(1, login_id);
 				ps.setString(2, password);
+				ps.setInt(3, 1);
 				ResultSet rs = ps.executeQuery();
 				List<User> userList = toUserList(rs);
 
@@ -144,7 +145,7 @@ public class UserDao {
 			}
 		}
 
-
+	//削除
 	public void delete(Connection connection, int deletedId){
 		PreparedStatement ps = null;
 		try{
