@@ -44,7 +44,7 @@ public class HomeServlet extends HttpServlet {
 			startDate = new MessageService().getOldestDate();
 		}else if (startDateParameter.isEmpty()){
 			startDate = new MessageService().getOldestDate();
-			//System.out.println(startDate);
+
 		} else {
 			startDate = startDateParameter;
 		}

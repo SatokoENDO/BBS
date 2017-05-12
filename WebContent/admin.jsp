@@ -36,7 +36,7 @@
 		<div class ="errorMessages">
 			<ul>
 				<c:forEach items = "${errorMessages}" var = "message">
-					<li><c:out value = "${message}"/>
+					<li><c:out value = "${message}"/><br><br>
 				</c:forEach>
 			</ul>
 		</div>
@@ -44,7 +44,7 @@
 	</c:if>
 	<c:if test = "${empty errorMessages}">
 		<div class ="validationMessage">
-			<p><c:out value = "${validationMessage}"/></p>
+			<p><c:out value = "${validationMessage}"/></p><br><br>
 		</div>
 	<c:remove var = "validationMessage" scope = "session"/>
 	</c:if>

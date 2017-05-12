@@ -23,6 +23,17 @@
 <FONT color="#000000" size="5"><STRONG>掲示板ホーム</STRONG></FONT>
 </Marquee>
 
+<c:if test = "${not empty errorMessages}">
+	<div class = "errorMessages">
+		<ul>
+			<c:forEach items = "${errorMessages}" var = "errorMessage">
+				<li><c:out value = "${errorMessage}"/><br><br>
+			</c:forEach>
+		</ul>
+	</div>
+	<c:remove var = "errorMessages" scope = "session"/>
+</c:if>
+
 	<div class="main-contents">
 		<div class="header">
 

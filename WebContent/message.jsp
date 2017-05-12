@@ -20,16 +20,16 @@
 		<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
 	</div><br/><br/>
 
-	<c:if test = "${ not empty messages }">
-		<div class = "messages">
-			<ul>
-				<c:forEach items = "${ errormessages }" var = "message">
-					<li><c:out value = "${ message }" /><br>
-				</c:forEach>
-			</ul>
-		</div>
-		<c:remove var = "messages" scope = "session" />
-	</c:if>
+	<c:if test = "${not empty errorMessages}">
+	<div class = "errorMessages">
+		<ul>
+			<c:forEach items = "${errorMessages}" var = "errorMessage">
+				<li><c:out value = "${errorMessage}"/><br><br>
+			</c:forEach>
+		</ul>
+	</div>
+	<c:remove var = "errorMessages" scope = "session"/>
+</c:if>
 
 	<div class = "input-text">
 		<form action = "message" method = "post">
