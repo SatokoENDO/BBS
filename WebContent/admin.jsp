@@ -32,16 +32,23 @@
 	<Marquee onmouseover=this.stop() onmouseout=this.start()>
 		<FONT color="#000000" size="5"><STRONG>ユーザー管理</STRONG></FONT>
 	</Marquee>
-	<c:if test="${ not empty errorMessages }">
-			<div class="errorMessages">
-				<ul>
-					<c:forEach items="${errorMessages}" var="message">
-						<li><c:out value="${message}" />
-					</c:forEach>
-				</ul>
-			</div>
-			<c:remove var="errorMessages" scope="session" />
-		</c:if>
+	<c:if test = "${not empty errorMessages}">
+		<div class ="errorMessages">
+			<ul>
+				<c:forEach items = "${errorMessages}" var = "message">
+					<li><c:out value = "${message}"/>
+				</c:forEach>
+			</ul>
+		</div>
+	<c:remove var = "errorMessages" scope = "session"/>
+	</c:if>
+	<c:if test = "${empty errorMessages}">
+		<div class ="validationMessage">
+			<p><c:out value = "${validationMessage}"/></p>
+		</div>
+	<c:remove var = "validationMessage" scope = "session"/>
+	</c:if>
+
 
 	<br>
 	<div class="header">

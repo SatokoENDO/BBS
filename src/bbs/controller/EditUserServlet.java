@@ -25,17 +25,26 @@ public class EditUserServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException{
-		int id = Integer.parseInt(request.getParameter("userId"));
-		User editUser = new AdminService().getUser(id);
+		HttpSession session = request.getSession();
+		List<String> messages = new ArrayList<String>();
+		if(isValidURL(request, messages) == true){
+			int id = Integer.parseInt(request.getParameter("userId"));
+			User editUser = new AdminService().getUser(id);
 
-		List<Branch> branches = new BranchService().getBranchList();
-		request.setAttribute("branches", branches);
 
-		List<Department> departments = new DepartmentService().getDepartmentList();
-		request.setAttribute("departments", departments);
 
-		request.setAttribute("editUser", editUser);
-		request.getRequestDispatcher("edituser.jsp").forward(request, response);
+			List<Branch> branches = new BranchService().getBranchList();
+			session.setAttribute("branches", branches);
+
+			List<Department> departments = new DepartmentService().getDepartmentList();
+			session.setAttribute("departments", departments);
+
+			session.setAttribute("editUser", editUser);
+			request.getRequestDispatcher("edituser.jsp").forward(request, response);
+		} else{
+			session.setAttribute("errorMessages", messages);
+			response.sendRedirect("admin");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -66,7 +75,7 @@ public class EditUserServlet extends HttpServlet{
 			user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
 			user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 
-			request.setAttribute("user", user);
+			session.setAttribute("user", user);
 
 			session.setAttribute("errorMessages", messages);
 			request.getRequestDispatcher("updated.jsp").forward(request, response);
@@ -120,6 +129,22 @@ public class EditUserServlet extends HttpServlet{
 			messages.add("支店の方は、店長か社員です");
 		}
 
+		if(messages.size() == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean isValidURL(HttpServletRequest request, List<String> messages){
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String id = request.getParameter("userId");
+		User user = new AdminService().getUser(userId);
+
+
+		if(user == null || id == null){
+			messages.add("指定されたURLは存在しません");
+		}
 		if(messages.size() == 0){
 			return true;
 		} else {
