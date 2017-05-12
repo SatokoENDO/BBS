@@ -84,7 +84,8 @@ public class EditUserServlet extends HttpServlet{
 		}
 
 	}
-	//url以下のid欄に数字が打ち込まれているかどうか
+
+	//urlのid欄に数字が打ち込まれているかどうか
 		private boolean isNumber(HttpServletRequest request, List<String> messages) {
 			try {
 				Integer.parseInt(request.getParameter("userId"));
@@ -111,8 +112,6 @@ public class EditUserServlet extends HttpServlet{
 			return false;
 		}
 	}
-
-
 
 	//ユーザー編集のエラーメッセージ
 	private boolean isValid(HttpServletRequest request, List<String> messages){

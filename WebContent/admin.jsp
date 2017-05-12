@@ -61,8 +61,8 @@
 			<tr>
 				<th>ログインID</th>
 				<th>名称</th>
-				<th>支店ID</th>
-				<th>部署ID</th>
+				<th>支店</th>
+				<th>所属部署</th>
 				<th>編集</th>
 				<th>停止・復活</th>
 				<th>ユーザー削除</th>
@@ -72,15 +72,36 @@
 					<td><div class="loginId">
 							<c:out value="${ user.loginId }" />
 						</div></td>
-					<td><div class="name">
+					<td>
 							<c:out value="${ user.name }" />
-						</div></td>
-					<td><div class="branchId">
-							<c:out value="${ user.branchId }" />
-						</div></td>
-					<td><div class="departmentId">
-							<c:out value="${ user.departmentId }" />
-						</div></td>
+					</td>
+					<td>
+						<c:if test="${ user.branchId == 1 }">
+							<c:out value="本社" />
+						</c:if>
+						<c:if test="${ user.branchId == 2 }">
+							<c:out value="A支店" />
+						</c:if>
+						<c:if test="${ user.branchId == 3 }">
+							<c:out value="B支店" />
+						</c:if>
+						<c:if test="${ user.branchId == 4 }">
+							<c:out value="C支店" />
+						</c:if>
+					</td>
+					<td><c:if test="${ user.departmentId == 1 }">
+							<c:out value="総務部" />
+						</c:if>
+						<c:if test="${ user.departmentId == 2 }">
+							<c:out value="情報部" />
+						</c:if>
+						<c:if test="${ user.departmentId == 3 }">
+							<c:out value="支店長" />
+						</c:if>
+						<c:if test="${ user.departmentId == 4 }">
+							<c:out value="社員" />
+						</c:if>
+					</td>
 
 					<td>
 						<form action="edituser" method="get">

@@ -123,27 +123,27 @@ public class UserDao {
 	public User getUser(Connection connection, String login_id, String password) {
 
 		PreparedStatement ps = null;
-			try {
-				StringBuilder sql = new StringBuilder();
-				sql.append("SELECT * FROM users WHERE login_id = ? AND password = ? AND is_locked = ?;");
-				ps = connection.prepareStatement(sql.toString());
-				ps.setString(1, login_id);
-				ps.setString(2, password);
-				ps.setInt(3, 1);
-				ResultSet rs = ps.executeQuery();
-				List<User> userList = toUserList(rs);
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM users WHERE login_id = ? AND password = ? AND is_locked = ?;");
+			ps = connection.prepareStatement(sql.toString());
+			ps.setString(1, login_id);
+			ps.setString(2, password);
+			ps.setInt(3, 1);
+			ResultSet rs = ps.executeQuery();
+			List<User> userList = toUserList(rs);
 
-				if (userList.isEmpty() == true) {
-					return null;
-				} else {
-					return userList.get(0);
-				}
-			} catch (SQLException e) {
-				throw new SQLRuntimeException(e);
-			} finally {
-				close(ps);
+			if (userList.isEmpty() == true) {
+				return null;
+			} else {
+				return userList.get(0);
 			}
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close(ps);
 		}
+	}
 
 	//削除
 	public void delete(Connection connection, int deletedId){
