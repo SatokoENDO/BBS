@@ -145,6 +145,28 @@ import bbs.exception.SQLRuntimeException;
 			}
 		}
 
+		//一番最古の書き込みを出す
+		public  String getOldestDate(Connection connection){
+			PreparedStatement ps = null;
+			try{
+				String sql = "SELECT MIN(insert_date) FROM user_message";
+				ps = connection.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+
+				String oldestDate = null;
+				while(rs.next()){
+					Timestamp insertDate = rs.getTimestamp("MIN(insert_date)");
+					oldestDate = insertDate.toString();
+					System.out.println(oldestDate);
+				}
+				return oldestDate;
+			}  catch (SQLException e) {
+				throw new SQLRuntimeException(e);
+			} finally {
+				close (ps);
+			}
+		}
+
 
 
 

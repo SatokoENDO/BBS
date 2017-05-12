@@ -1,8 +1,6 @@
 package bbs.filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,29 +13,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/message", "/home", "/home.jsp", "/index.jsp", "/admin", "/signup", "/edituser"})
+import bbs.beans.User;
+
+@WebFilter(urlPatterns = {"/index.jsp", "/home", "/home.jsp", "/message", "/admin", "/signup", "/edituser"})
 public class LoginFilter implements Filter{
+	 public void doFilter(ServletRequest request, ServletResponse response,
+	            FilterChain chain) throws IOException, ServletException {
+		 HttpSession session = ((HttpServletRequest)request).getSession();
+			String target = ((HttpServletRequest)request).getServletPath();
+			String thisURI = ((HttpServletRequest)request).getRequestURI();
+			User user = (User) session.getAttribute("loginUser");
 
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException{
-		HttpSession session = ((HttpServletRequest)request).getSession();
-
-		List<String> messages = new ArrayList<>();
-		if(session.getAttribute("loginUser") == null){
-			messages.add("ログインしてください");
-			session.setAttribute("messages", messages);
+	try{
+		if(!thisURI.matches(".*.css") && (!target.equals("/login") && user == null)) {
+			String message = "ログインしてください";
+			session.setAttribute("errorMessages", message);
 			((HttpServletResponse)response).sendRedirect("login");
 			return;
 		}
+
 		chain.doFilter(request, response);
+
+
+	 } catch (ServletException se){
+	    }catch (IOException e){
+	    }
 	}
 
-	public void init(FilterConfig config){
 
-	}
+   public void init(FilterConfig arg0) throws ServletException {
 
-	public void destroy(){
+   }
 
-	}
+
+	 public void destroy() {
+
+	 }
+
 
 }

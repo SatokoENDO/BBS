@@ -34,7 +34,6 @@ public class EncodingFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
         // TODO Auto-generated method stub
         // place your code here
-
         request.setCharacterEncoding(encoding);
         response.setContentType("text/html; charset=" + encoding);
 
@@ -44,13 +43,10 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void destroy() {
-        // TODO 自動生成されたメソッド・スタブ
-
     }
 
     @Override
     public void init(FilterConfig arg0) throws ServletException {
-        // TODO 自動生成されたメソッド・スタブ
 
     }
 }

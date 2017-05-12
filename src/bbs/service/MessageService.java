@@ -116,4 +116,26 @@ public class MessageService {
 			close(connection);
 		}
 	}
+
+	//最古の書き込みを出す
+	public String getOldestDate(){
+		Connection connection = null;
+		try{
+			connection = getConnection();
+
+			UserMessageDao userMessageDao = new UserMessageDao();
+			String date = userMessageDao.getOldestDate(connection);
+
+			commit(connection);
+			return date;
+		} catch(RuntimeException e){
+			 rollback(connection);
+			 throw e;
+		 } catch(Error e){
+			 throw e;
+		 } finally{
+			 close(connection);
+		 }
+	}
+
 }

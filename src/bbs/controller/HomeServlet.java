@@ -41,9 +41,10 @@ public class HomeServlet extends HttpServlet {
 		String endDateParameter = request.getParameter("endDate");
 
 		if(startDateParameter == null){
-			startDate = "2000-12-1";
+			startDate = new MessageService().getOldestDate();
 		}else if (startDateParameter.isEmpty()){
-			startDate = "2000-12-1";
+			startDate = new MessageService().getOldestDate();
+			//System.out.println(startDate);
 		} else {
 			startDate = startDateParameter;
 		}

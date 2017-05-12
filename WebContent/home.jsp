@@ -26,7 +26,7 @@
 	<div class="main-contents">
 		<div class="header">
 
-			<a href="message">新規投稿</a> <a href="login">ログアウト</a>
+			<a href="message">新規投稿</a> <a href="logout">ログアウト</a>
 			<c:if
 				test="${loginUser.branchId == 1 && loginUser.departmentId == 1}">
 				<a href="admin">ユーザー管理</a>

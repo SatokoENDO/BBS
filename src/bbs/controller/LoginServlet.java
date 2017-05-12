@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 			throws IOException, ServletException {
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
-	@SuppressWarnings("null")
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
