@@ -27,20 +27,23 @@ public class EditUserServlet extends HttpServlet{
 			HttpServletResponse response) throws IOException, ServletException{
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
-		if(isValidURL(request, messages) == true){
-			int id = Integer.parseInt(request.getParameter("userId"));
-			User editUser = new AdminService().getUser(id);
+		if(isNumber(request, messages)==true){
+			if(isValidURL(request,messages ) == true){
+				int id = Integer.parseInt(request.getParameter("userId"));
+				User editUser = new AdminService().getUser(id);
 
+				List<Branch> branches = new BranchService().getBranchList();
+				session.setAttribute("branches", branches);
 
+				List<Department> departments = new DepartmentService().getDepartmentList();
+				session.setAttribute("departments", departments);
 
-			List<Branch> branches = new BranchService().getBranchList();
-			session.setAttribute("branches", branches);
-
-			List<Department> departments = new DepartmentService().getDepartmentList();
-			session.setAttribute("departments", departments);
-
-			session.setAttribute("editUser", editUser);
-			request.getRequestDispatcher("edituser.jsp").forward(request, response);
+				session.setAttribute("editUser", editUser);
+				request.getRequestDispatcher("edituser.jsp").forward(request, response);
+			} else{
+				session.setAttribute("errorMessages", messages);
+				response.sendRedirect("admin");
+			}
 		} else{
 			session.setAttribute("errorMessages", messages);
 			response.sendRedirect("admin");
@@ -64,7 +67,6 @@ public class EditUserServlet extends HttpServlet{
 
 			new UserService().update(user);
 
-
 			String validationMessage =  "更新完了しました";
 			session.setAttribute("validationMessage", validationMessage);
 			request.getRequestDispatcher("updated.jsp").forward(request, response);
@@ -82,7 +84,37 @@ public class EditUserServlet extends HttpServlet{
 		}
 
 	}
+	//url以下のid欄に数字が打ち込まれているかどうか
+		private boolean isNumber(HttpServletRequest request, List<String> messages) {
+			try {
+				Integer.parseInt(request.getParameter("userId"));
+				return true;
+			} catch (NumberFormatException e) {
+				messages.add("指定されたURLは存在しません");
+				return false;
+			}
+		}
 
+	// urlのid以下の数字が存在するかどうか
+	private boolean isValidURL(HttpServletRequest request, List<String> messages){
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String id = request.getParameter("userId");
+		User user = new AdminService().getUser(userId);
+
+
+		if(user == null || id == null){
+			messages.add("指定されたURLは存在しません");
+		}
+		if(messages.size() == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+
+	//ユーザー編集のエラーメッセージ
 	private boolean isValid(HttpServletRequest request, List<String> messages){
 
 		String loginId = request.getParameter("loginId");
@@ -136,19 +168,5 @@ public class EditUserServlet extends HttpServlet{
 		}
 	}
 
-	private boolean isValidURL(HttpServletRequest request, List<String> messages){
-		int userId = Integer.parseInt(request.getParameter("userId"));
-		String id = request.getParameter("userId");
-		User user = new AdminService().getUser(userId);
 
-
-		if(user == null || id == null){
-			messages.add("指定されたURLは存在しません");
-		}
-		if(messages.size() == 0){
-			return true;
-		} else {
-			return false;
-		}
-	}
 }
