@@ -140,7 +140,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<a href = "./">戻る</a>
+		<br><br><a href = "admin">戻る</a>
 	</div>
 </body>
 </html>

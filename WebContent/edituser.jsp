@@ -74,7 +74,6 @@
 	</table>
 
 	<input type = "submit" value = "更新"/>
-
 	<br/>
 </form>
 

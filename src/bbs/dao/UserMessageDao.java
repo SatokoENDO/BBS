@@ -30,15 +30,11 @@ import bbs.exception.SQLRuntimeException;
 
 				ps = connection.prepareStatement(sql.toString());
 
-				System.out.println("ssssssss");
-				System.out.println(ps);
-
 
 				if(category == null || category.isEmpty()){
 				}else{
 					ps.setString(1, category);
 				}
-				System.out.println(ps);
 				ResultSet rs = ps.executeQuery();
 
 				List<UserMessage> ret = toUserMessageList(rs);
@@ -80,7 +76,6 @@ import bbs.exception.SQLRuntimeException;
 
 					ret.add(message);
 				}
-				System.out.println(ret.size());
 				return ret;
 
 			} finally{
@@ -131,8 +126,6 @@ import bbs.exception.SQLRuntimeException;
 
 				ps = connection.prepareStatement(sql.toString());
 
-				System.out.println(ps.toString());
-
 				ResultSet rs = ps.executeQuery();
 
 				List<UserMessage> ret = toUserMessageList(rs);
@@ -157,7 +150,6 @@ import bbs.exception.SQLRuntimeException;
 				while(rs.next()){
 					Timestamp insertDate = rs.getTimestamp("MIN(insert_date)");
 					oldestDate = insertDate.toString();
-					System.out.println(oldestDate);
 				}
 				return oldestDate;
 			}  catch (SQLException e) {

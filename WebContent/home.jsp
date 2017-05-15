@@ -139,8 +139,8 @@
 				<div class="comments-form">
 					<form action="comment" method="post">
 						<input type="hidden" name="messageId" value="${message.id}">
-						<textarea name="text" cols="50" rows="5" class="comment-box"></textarea>
-						<br /> <input type="submit" value="コメント">
+						<textarea name="text" cols="40" rows="8" class="comment-box"></textarea>
+						<br /><div class="comments-form-end"> <input type="submit" value="コメント"></div>
 					</form>
 				</div>
 			</c:forEach>

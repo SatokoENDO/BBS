@@ -48,7 +48,11 @@ body {
 
 .comments-form{
 	margin-top:10px;
-	margin-bottom: 50px;
+	margin-left: 200px;
+}
+
+.comments-form-end{
+	margin-left: 230px;
 }
 
 br {
@@ -83,17 +87,12 @@ table th {
     border-width:0 0 1px 1px;
     background:#EFEBEF;
     font-weight:bold;
-    text-align:left;
+    text-align:middle;
 }
 
 table td {
     padding:5px;
     border:1px solid #999;
     border-width:0 0 1px 1px;
-    text-align:left;
+    text-align:middle;
 }
-
-
-
-
-

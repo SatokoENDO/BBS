@@ -20,7 +20,6 @@ public class DeleteUserServlet extends HttpServlet{
 			HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
 		new UserService().delete(id);
 		String messages = "ユーザーを削除しました";
 
