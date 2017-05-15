@@ -88,7 +88,7 @@
 						pattern="yyyy/MM/dd HH:mm:ss" />
 				</div>
 				<c:if
-					test="${ (loginUser.branchId == 1 && loginUser.departmentId == 2) || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
+					test="${(loginUser.branchId == 1 && loginUser.departmentId == 2) || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
 				<td colspan="2"><div align="left">
 						<form action="deleteMessage" method="post">
 

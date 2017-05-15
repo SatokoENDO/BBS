@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
+
 import bbs.beans.Comment;
 import bbs.beans.User;
 import bbs.service.CommentService;
@@ -49,6 +51,11 @@ public class CommentServlet extends HttpServlet{
 
 	private boolean isValid(HttpServletRequest request, List<String> errorMessage) {
 		String comment = request.getParameter("text");
+
+		if(StringUtils.isBlank(comment)){
+			errorMessage.add("コメントを入力してください");
+		}
+
 		if (comment.length() == 0) {
 			errorMessage.add("コメントを入力してください");
 		}

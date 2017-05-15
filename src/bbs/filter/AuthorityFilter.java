@@ -27,8 +27,8 @@ public class AuthorityFilter implements Filter{
 			if((user.getBranchId()==1 && user.getDepartmentId()==1)){
 				chain.doFilter(request, response);
 			} else{
-				String message = "権限がありません。ホーム画面に遷移します";
-				session.setAttribute("errorMassages", message);
+				String errorMessage = "指定されたURLへのアクセス権限がありません。";
+				session.setAttribute("errorMessages", errorMessage);
 				((HttpServletResponse)response).sendRedirect("./");
 				return;
 			}

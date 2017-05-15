@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
+
 import bbs.beans.Message;
 import bbs.beans.User;
 import bbs.service.MessageService;
@@ -54,8 +56,7 @@ public class MessageServlet extends HttpServlet {
 		String text = request.getParameter("text");
 		String category = request.getParameter("category");
 
-		if (title.length() == 0) {
-			errorMessage.add("投稿に失敗しました");
+		if(StringUtils.isBlank(title) || title.length() == 0){
 			errorMessage.add("件名を入力してください");
 		}
 
@@ -63,7 +64,7 @@ public class MessageServlet extends HttpServlet {
 			errorMessage.add("件名は50文字以下で入力してください");
 		}
 
-		if (category.length() == 0) {
+		if(StringUtils.isBlank(category) || category.length() == 0){
 			errorMessage.add("カテゴリーを入力してください");
 		}
 
@@ -71,7 +72,7 @@ public class MessageServlet extends HttpServlet {
 			errorMessage.add("カテゴリーは10文字以下で入力してください");
 		}
 
-		if (text.length() == 0) {
+		if(StringUtils.isBlank(text) || text.length() == 0){
 			errorMessage.add("本文を入力してください");
 		}
 

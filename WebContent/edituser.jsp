@@ -38,7 +38,7 @@
 
 	<label for = "name">名前</label>
 	<input name = "name" value = "${editUser.name }"/>(10字以内)<br/>
-
+	<c:if test="${editUser.id != loginUser.getId()}">
 	<label for="departmentId">所属支店</label>
 
 						<select name="branchId">
@@ -48,7 +48,8 @@
 						</option>
 				</c:forEach>
 			</select><br />
-
+	</c:if>
+	<c:if test="${editUser.id != loginUser.getId()}">
 	<label for="departmentId">部署・役職</label>
 
 						<select name="departmentId">
@@ -58,6 +59,7 @@
 						</option>
 				</c:forEach>
 			</select><br />
+	</c:if>
 
 	<input type = "submit" value = "更新"/>
 
