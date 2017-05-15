@@ -37,11 +37,11 @@
 	<div class="main-contents">
 		<div class="header">
 
-			<a href="message">新規投稿</a> <a href="logout">ログアウト</a>
+			<a href="message">新規投稿</a>
 			<c:if
 				test="${loginUser.branchId == 1 && loginUser.departmentId == 1}">
 				<a href="admin">ユーザー管理</a>
-			</c:if>
+			</c:if><div align="right"><a href="logout">ログアウト</a></div>
 		</div>
 		<div class="loginUser">
 			<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
@@ -60,9 +60,11 @@
 	</form> <br />
 
 		<div class="messages">
+
 			<c:forEach items="${messages}" var="message">
 				<hr size="10" width="500" color="black " align="left">
 				<br />
+				<div class="mainMessage">
 				<div class="name">
 					投稿者：
 					<c:out value="${message.name}" />
@@ -97,12 +99,14 @@
 						</form>
 					</div></td>
 				</c:if>
+				</div>
+
 
 				<br />
-				<hr size="2" width="400" color="black " align="left">
+
 				<c:forEach items="${comments}" var="comment">
 					<c:if test="${comment.messageId==message.id}">
-						<div class="text">
+						<div class="comments"><div class="comment">
 							コメント：
 							<c:forEach var="s" items="${fn:split(comment.text, '
 ')}">
@@ -127,6 +131,7 @@
 						</form><br>
 						</c:if>
 						<br />
+						</div>
 					</c:if>
 
 				</c:forEach>

@@ -69,7 +69,7 @@ public class EditUserServlet extends HttpServlet{
 
 			String validationMessage =  "更新完了しました";
 			session.setAttribute("validationMessage", validationMessage);
-			request.getRequestDispatcher("updated.jsp").forward(request, response);
+			request.getRequestDispatcher("edituser.jsp").forward(request, response);
 
 		} else {
 			user.setLoginId(request.getParameter("loginId"));
@@ -80,7 +80,7 @@ public class EditUserServlet extends HttpServlet{
 			session.setAttribute("user", user);
 
 			session.setAttribute("errorMessages", messages);
-			request.getRequestDispatcher("updated.jsp").forward(request, response);
+			request.getRequestDispatcher("edituser.jsp").forward(request, response);
 		}
 
 	}

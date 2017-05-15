@@ -12,17 +12,22 @@
 
 </head>
 <body>
-	<div class="menu">
-		<a href="./">戻る</a>
-	</div>
 	<hr />
-	<c:if test="${ not empty errorMessages }">
-		<ul>
-			<c:forEach items="${ errorMessages }" var="messages">
-				<li><span><c:out value="${errorMessages}" /></span></li>
-			</c:forEach>
-		</ul>
-		<c:remove var="errorMessages" scope="session" />
+	<c:if test = "${not empty errorMessages}">
+		<div class ="errorMessages">
+			<ul>
+				<c:forEach items = "${errorMessages}" var = "message">
+					<li><c:out value = "${message}"/>
+				</c:forEach>
+			</ul>
+		</div>
+	<c:remove var = "errorMessages" scope = "session"/>
+	</c:if>
+	<c:if test = "${empty errorMessages}">
+		<div class ="validationMessage">
+			<p><c:out value = "${validationMessage}"/></p>
+		</div>
+	<c:remove var = "validationMessage" scope = "session"/>
 	</c:if>
 	<div class="main">
 		<Marquee onmouseover=this.stop() onmouseout=this.start()>
@@ -42,30 +47,31 @@
 	<tr>
 		<th>名前</th><td><input type="text" name="name" value="${name}" /></td>
 	</tr>
-	</table>
-	<label for="departmentId">所属支店</label>
-
-						<select name="branchId">
+	<tr>
+	<th>所属支店</th><td><select name="branchId">
 				<c:forEach items="${branches}" var="branch">
 						<option value="${branch.id}">
 							<c:out value="${branch.name}" />
 						</option>
 				</c:forEach>
-			</select><br />
-
-	<label for="departmentId">部署・役職</label>
-
-						<select name="departmentId">
+			</select></td>
+	</tr>
+	<tr>
+	<th>所属部署・役職</th><td><select name="departmentId">
 				<c:forEach items="${departments}" var="department">
 						<option value="${department.id}">
 							<c:out value="${department.name}" />
 						</option>
 				</c:forEach>
-			</select><br />
+			</select></td>
+	</tr>
+	</table>
+
 
 
 <div class="submit"><input type="submit" value="登録"></div>
 </form>
+<br><br><a href = "admin">戻る</a>
 	</div>
 </body>
 </html>

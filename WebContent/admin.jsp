@@ -52,7 +52,7 @@
 
 	<br>
 	<div class="header">
-<a href="./">ホーム</a> <a href="logout">ログアウト</a> <a href="signup">新規ユーザー登録</a>
+<a href="./">ホーム</a>  <a href="signup">新規ユーザー登録</a><div align="right"><a href="logout">ログアウト</a></div>
 	</div>
 	<br>
 
@@ -140,6 +140,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<a href = "./">戻る</a>
 	</div>
 </body>
 </html>

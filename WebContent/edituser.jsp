@@ -11,62 +11,74 @@
 
 </head>
 <body>
+	<Marquee onmouseover=this.stop() onmouseout=this.start()>
+		<FONT color="#000000" size="5"><STRONG>ユーザー編集</STRONG></FONT>
+	</Marquee>
 <div class= "main-contents">
-<c:if test="${ not empty errorMessages }">
-			<div class="errorMessages">
-				<ul>
-					<c:forEach items="${errorMessages}" var="message">
-						<li><c:out value="${message}" /><br><br>
-					</c:forEach>
-				</ul>
-			</div>
-			<c:remove var="errorMessages" scope="session" />
-		</c:if>
+<c:if test = "${not empty errorMessages}">
+		<div class ="errorMessages">
+			<ul>
+				<c:forEach items = "${errorMessages}" var = "message">
+					<li><c:out value = "${message}"/>
+				</c:forEach>
+			</ul>
+		</div>
+	<c:remove var = "errorMessages" scope = "session"/>
+	</c:if>
+	<c:if test = "${empty errorMessages}">
+		<div class ="validationMessage">
+			<p><c:out value = "${validationMessage}"/></p>
+		</div>
+	<c:remove var = "validationMessage" scope = "session"/>
+	</c:if>
 
 
 <form action = "edituser" method = "post"><br/>
-	<input type ="hidden" name = "userId" value = "${editUser.id}">
+<input type ="hidden" name = "userId" value = "${editUser.id}">
+	<table class="signup">
 
-	<label for = "loginId">ログインID</label>
-	<input name = "loginId" value = "${editUser.loginId}" />(半角英数字6～20字)<br/>
-
-	<label for = "password">パスワード</label>
-	<input type="password" name = "password"/>(記号含む半角文字6～255字)<br/>
-
-	<label for = "checkPassword">パスワードの確認</label>
-	<input type="password" name = "checkPassword"/><br/>
-
-	<label for = "name">名前</label>
-	<input name = "name" value = "${editUser.name }"/>(10字以内)<br/>
+	<tr>
+		<th>ログインID</th><td><input type="text" name="loginId" value="${editUser.loginId}" />(半角英数字6～20字)</td>
+	</tr>
+	<tr>
+		<th>パスワード</th><td><input type="password" name="password" />(記号含む半角文字6～255字)</td>
+	</tr>
+	<tr>
+		<th>パスワード(確認)</th><td><input type="password" name="checkPassword" /></td>
+	</tr>
+	<tr>
+		<th>名前</th><td><input type="text" name="name" value="${editUser.name}" />(10字以内)</td>
+	</tr>
 	<c:if test="${editUser.id != loginUser.getId()}">
-	<label for="departmentId">所属支店</label>
-
-						<select name="branchId">
+	<tr>
+	<th>所属支店</th><td><select name="branchId">
 				<c:forEach items="${branches}" var="branch">
 						<option value="${branch.id}">
 							<c:out value="${branch.name}" />
 						</option>
 				</c:forEach>
-			</select><br />
+			</select></td>
+	</tr>
 	</c:if>
 	<c:if test="${editUser.id != loginUser.getId()}">
-	<label for="departmentId">部署・役職</label>
-
-						<select name="departmentId">
+	<tr>
+	<th>所属部署・役職</th><td><select name="departmentId">
 				<c:forEach items="${departments}" var="department">
 						<option value="${department.id}">
 							<c:out value="${department.name}" />
 						</option>
 				</c:forEach>
-			</select><br />
+			</select></td>
+	</tr>
 	</c:if>
+	</table>
 
 	<input type = "submit" value = "更新"/>
 
 	<br/>
 </form>
 
-<a href = "admin">戻る</a>
+<br><br><a href = "admin">戻る</a>
 </div>
 </body>
 </html>
