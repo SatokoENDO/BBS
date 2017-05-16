@@ -300,61 +300,8 @@ public class UserDao {
 		}
 	}
 
-	public String updateUser(Connection connection, User user, int check) {
-		String message = new String();
-		PreparedStatement SurchPs = null;
-		PreparedStatement ps = null;
-		try {
-			StringBuilder SearchSql = new StringBuilder();
-			SearchSql.append("SELECT * FROM users WHERE login_id = ? ");
-			SearchSql.append(" AND id != ? ;");
-			SurchPs = connection.prepareStatement(SearchSql.toString());
-			SurchPs.setString(1, user.getLoginId());
-			SurchPs.setInt(2, user.getId());
-
-			ResultSet rs = SurchPs.executeQuery();
-			if (rs.next()) {
-				message = "そのログインIDは既に登録されています";
-				return message;
-			}
-
-			//編集画面
-			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE users SET ");
-			sql.append("login_id = ?, ");
-
-			sql.append("account = ?, ");
-			sql.append("branch_id = ?, ");
-			sql.append("position_id = ? ");
-			if (check == 0) {
-				sql.append(", password = ? ");
-			}
-			sql.append(" WHERE ");
-			sql.append(" id = ? ;");
-
-			ps = connection.prepareStatement(sql.toString());
-
-			ps.setString(1, user.getLoginId());
-			ps.setString(2, user.getName());
-			ps.setInt(3, user.getBranchId());
-			ps.setInt(4, user.getDepartmentId());
-			if (check == 0) {
-				ps.setString(5, user.getPassword());
-				ps.setInt(6, user.getId());
-			} else {
-				ps.setInt(5, user.getId());
-			}
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally {
-			close(SurchPs);
-			close(ps);
-		}
-		return message;
-	}
-
-
-
-
 }
+
+
+
+

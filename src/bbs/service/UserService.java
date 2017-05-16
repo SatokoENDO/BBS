@@ -168,7 +168,7 @@ public class UserService {
 		}
 	}
 
-	public String updateUser(User user, int check) {
+	/*public String updateUser(User user, int check) {
 		String message = new String();
 		Connection connection = null;
 		try {
@@ -188,7 +188,7 @@ public class UserService {
 			close(connection);
 		}
 		return message;
-	}
+	}*/
 
 
 }

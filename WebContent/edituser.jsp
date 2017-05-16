@@ -14,11 +14,13 @@
 	<Marquee onmouseover=this.stop() onmouseout=this.start()>
 		<FONT color="#000000" size="5"><STRONG>ユーザー編集</STRONG></FONT>
 	</Marquee>
+
+	<br><br><a href = "admin">戻る</a>
 <div class= "main-contents">
 <c:if test = "${not empty errorMessages}">
 		<div class ="errorMessages">
 			<ul>
-				<c:forEach items = "${errorMessages}" var = "message">
+				<c:forEach items = "${errorMesssages}" var = "message">
 					<li><c:out value = "${message}"/>
 				</c:forEach>
 			</ul>
@@ -77,7 +79,7 @@
 	<br/>
 </form>
 
-<br><br><a href = "admin">戻る</a>
+
 </div>
 </body>
 </html>
