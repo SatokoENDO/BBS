@@ -96,11 +96,31 @@ body {
 	margin-left:50px;
 }
 .comments-form-end {
-	margin-left:250px;
+	margin-left:300px;
 }
 
 .errorMessages {
 	color:red;
+}
+
+.validationMessages {
+	color:blue;
+}
+
+.login{
+	margin-left:50px;
+}
+
+.messageSubmit{
+	margin-left:1px;
+}
+
+.update{
+	margin-left:10px;
+}
+
+.userSubmit{
+	margin-left:10px;
 }
 
 br {

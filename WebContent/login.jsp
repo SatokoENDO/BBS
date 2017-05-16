@@ -36,8 +36,7 @@
 	</tr>
 </table>
 
-	<br>
-	<br><input type = "submit" value ="ログイン"><br/>
+	<div class="login"><br><input type = "submit" value ="ログイン"><br/></div>
 </form>
 
 </div>

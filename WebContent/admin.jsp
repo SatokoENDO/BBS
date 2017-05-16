@@ -81,29 +81,29 @@
 					</td>
 					<td>
 						<c:if test="${ user.branchId == 1 }">
-							<c:out value="本社" />
+							<c:out value=" 本社 " />
 						</c:if>
 						<c:if test="${ user.branchId == 2 }">
-							<c:out value="A支店" />
+							<c:out value=" A支店 " />
 						</c:if>
 						<c:if test="${ user.branchId == 3 }">
-							<c:out value="B支店" />
+							<c:out value=" B支店 " />
 						</c:if>
 						<c:if test="${ user.branchId == 4 }">
-							<c:out value="C支店" />
+							<c:out value=" C支店 " />
 						</c:if>
 					</td>
 					<td><c:if test="${ user.departmentId == 1 }">
-							<c:out value="総務部" />
+							<c:out value=" 総務部 " />
 						</c:if>
 						<c:if test="${ user.departmentId == 2 }">
-							<c:out value="情報部" />
+							<c:out value=" 情報部 " />
 						</c:if>
 						<c:if test="${ user.departmentId == 3 }">
-							<c:out value="支店長" />
+							<c:out value=" 支店長 " />
 						</c:if>
 						<c:if test="${ user.departmentId == 4 }">
-							<c:out value="社員" />
+							<c:out value=" 社員 " />
 						</c:if>
 					</td>
 

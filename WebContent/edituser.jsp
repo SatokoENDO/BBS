@@ -51,31 +51,29 @@
 	<tr>
 		<th>名前</th><td><input type="text" name="name" value="${editUser.name}" />(10字以内)</td>
 	</tr>
-	<c:if test="${editUser.id != loginUser.getId()}">
 	<tr>
 	<th>所属支店</th><td><select name="branchId">
 				<c:forEach items="${branches}" var="branch">
-						<option value="${branch.id}" <c:if test = "${editUser.branchId == branch.id }">selected</c:if>>
+						<option value="${branch.id}">
 							<c:out value="${branch.name}" />
 						</option>
 				</c:forEach>
 			</select></td>
 	</tr>
-	</c:if>
-	<c:if test="${editUser.id != loginUser.getId()}">
+
 	<tr>
 	<th>所属部署・役職</th><td><select name="departmentId">
 				<c:forEach items="${departments}" var="department">
-						<option value="${department.id}" <c:if test = "${editUser.departmentId == department.id }">selected</c:if>>
+						<option value="${department.id}">
 							<c:out value="${department.name}" />
 						</option>
 				</c:forEach>
 			</select></td>
 	</tr>
-	</c:if>
+
 	</table>
 
-	<input type = "submit" value = "更新"/>
+	<div class="update"><input type = "submit" value = "更新"/></div>
 	<br/>
 </form>
 

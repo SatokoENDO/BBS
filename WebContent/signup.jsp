@@ -73,7 +73,7 @@
 
 
 
-<div class="submit"><input type="submit" value="登録"></div>
+<div class="userSubmit"><input type="submit" value="登録"></div>
 </form>
 	</div>
 </body>

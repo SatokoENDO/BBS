@@ -27,6 +27,11 @@ public class LoginFilter implements Filter{
 
 	try{
 		if(!thisURI.matches(".*.css") && (!target.equals("/login") && user == null)) {
+			/*int userId =user.getId();
+			User updateUser = new UserService().getUser(userId);
+			session.setAttribute("loginUser",updateUser);*/
+
+
 			String message = "ログインしてください";
 			session.setAttribute("errorMessages", message);
 			((HttpServletResponse)response).sendRedirect("login");
@@ -34,7 +39,6 @@ public class LoginFilter implements Filter{
 		}
 
 		chain.doFilter(request, response);
-
 
 	 } catch (ServletException se){
 	    }catch (IOException e){

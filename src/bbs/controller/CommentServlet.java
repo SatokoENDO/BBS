@@ -44,6 +44,10 @@ public class CommentServlet extends HttpServlet{
 			new CommentService().register(comment);
 			response.sendRedirect("./");
 		} else {
+			comment.setText(request.getParameter("text"));
+			comment.setMessageId(Integer.parseInt(request.getParameter("messageId")));
+
+			session.setAttribute("errorComment", comment);
 			session.setAttribute("errorMessages", messages);
 			response.sendRedirect("./");
 		}

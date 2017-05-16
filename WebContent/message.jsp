@@ -53,8 +53,8 @@
 			</p>
 			<textarea name="text" cols="50" rows="5" class="text-box"></textarea>
 			<p>
-				<input type = "submit" value = "投稿">
-			</p>
+				<div class="messageSubmit"><input type = "submit" value = "投稿">
+			</p></div>
 		</form>
 
 
