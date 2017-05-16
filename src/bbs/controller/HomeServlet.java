@@ -28,8 +28,7 @@ public class HomeServlet extends HttpServlet {
 		List<String> categories = new MessageService().getCategories();
 		request.setAttribute("categories", categories);
 		String category = request.getParameter("category");
-
-		System.out.println(category);
+		request.setAttribute("selectedCategory", category);
 
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -39,6 +38,7 @@ public class HomeServlet extends HttpServlet {
 
 		String endDate;
 		String endDateParameter = request.getParameter("endDate");
+
 
 		if(startDateParameter == null){
 			startDate = new MessageService().getOldestDate();
@@ -56,6 +56,7 @@ public class HomeServlet extends HttpServlet {
 		} else {
 			endDate = endDateParameter;
 		}
+
 
 		List<UserMessage> userMessage = new MessageService().getMessage(category, startDate, endDate);
 		request.setAttribute("messages", userMessage);

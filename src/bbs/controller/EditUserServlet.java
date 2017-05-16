@@ -34,6 +34,8 @@ public class EditUserServlet extends HttpServlet{
 
 				List<Branch> branches = new BranchService().getBranchList();
 				session.setAttribute("branches", branches);
+				request.setAttribute("selectedBranch", branches);
+
 
 				List<Department> departments = new DepartmentService().getDepartmentList();
 				session.setAttribute("departments", departments);
@@ -56,14 +58,14 @@ public class EditUserServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 
 		User user = new User();
-
+		user.setId(Integer.parseInt(request.getParameter("userId")));
+		user.setLoginId(request.getParameter("loginId"));
+		user.setPassword(request.getParameter("password"));
+		user.setName(request.getParameter("name"));
+		user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
+		user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 		if(isValid(request, messages) == true){
-			user.setId(Integer.parseInt(request.getParameter("userId")));
-			user.setLoginId(request.getParameter("loginId"));
-			user.setPassword(request.getParameter("password"));
-			user.setName(request.getParameter("name"));
-			user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
-			user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
+
 
 			new UserService().update(user);
 
@@ -73,11 +75,11 @@ public class EditUserServlet extends HttpServlet{
 
 		} else {
 			user.setLoginId(request.getParameter("loginId"));
-			user.setName(request.getParameter("name"));
-			user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
-			user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
+//			user.setName(request.getParameter("name"));
+//			user.setBranchId(Integer.parseInt(request.getParameter("branchId")));
+//			user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 
-			session.setAttribute("user", user);
+			request.setAttribute("user", user);
 
 			session.setAttribute("errorMessages", messages);
 			request.getRequestDispatcher("edituser.jsp").forward(request, response);

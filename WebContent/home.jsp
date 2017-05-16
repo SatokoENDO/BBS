@@ -47,15 +47,21 @@
 			<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
 		</div>
 		<br /><form action="./" method = "Get">
-
-		カテゴリ:&nbsp;<select name="category" size = "1">
-			<option value = "">全て</option>
+カテゴリ:<select name="category" size = "1">
+		<c:if test = "${selectedCategory == null}">
+			<option value = "" selected >  </option>
 			<c:forEach items = "${categories}" var = "category">
 				<option value="${category}"><c:out value = "${category}"/></option>
 			</c:forEach>
-		</select><br/><br/>
-		日付:&nbsp;<input type = "date" name = "startDate">から<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "date" name = "endDate">まで
+			</c:if>
+		<c:if test = "${selectedCategory != null }">
+			<option value = ""></option>
+			<c:forEach items = "${categories}" var = "category">
+				<option value="${category}" <c:if test = "${selectedCategory.equals(category)}">selected</c:if>><c:out value = "${category}"/></option>
+			</c:forEach>
+			</c:if>
+		</select><br/><br>
+		日付:&nbsp;<input type = "date" name = "startDate">から<input type = "date" name = "endDate">まで
 		&nbsp;&nbsp;<input type = "submit" value = "絞込み">
 	</form> <br />
 
@@ -106,11 +112,12 @@
 
 				<c:forEach items="${comments}" var="comment">
 					<c:if test="${comment.messageId==message.id}">
+					<br>
 						<div class="comments"><div class="comment">
 							コメント：
 							<c:forEach var="s" items="${fn:split(comment.text, '
 ')}">
-    <div>${s}</div>
+    <div>${s}</div><br><br>
 </c:forEach>
 						</div><br>
 						<div class="name">
@@ -136,7 +143,7 @@
 
 				</c:forEach>
 
-				<div class="comments-form">
+				<br><div class="comments-form">
 					<form action="comment" method="post">
 						<input type="hidden" name="messageId" value="${message.id}">
 						<textarea name="text" cols="40" rows="8" class="comment-box"></textarea>

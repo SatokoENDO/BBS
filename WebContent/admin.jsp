@@ -32,6 +32,10 @@
 	<Marquee onmouseover=this.stop() onmouseout=this.start()>
 		<FONT color="#000000" size="5"><STRONG>ユーザー管理</STRONG></FONT>
 	</Marquee>
+
+	<br><br><a href = "./">戻る</a>
+
+
 	<c:if test = "${not empty errorMessages}">
 		<div class ="errorMessages">
 			<ul>
@@ -140,7 +144,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<br><br><a href = "admin">戻る</a>
 	</div>
 </body>
 </html>

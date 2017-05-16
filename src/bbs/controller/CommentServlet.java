@@ -52,13 +52,10 @@ public class CommentServlet extends HttpServlet{
 	private boolean isValid(HttpServletRequest request, List<String> errorMessage) {
 		String comment = request.getParameter("text");
 
-		if(StringUtils.isBlank(comment)){
+		if(StringUtils.isBlank(comment) || comment.length() == 0){
 			errorMessage.add("コメントを入力してください");
 		}
 
-		if (comment.length() == 0) {
-			errorMessage.add("コメントを入力してください");
-		}
 		if (comment.length()> 500) {
 			errorMessage.add("コメントは500文字以下で入力してください");
 		}

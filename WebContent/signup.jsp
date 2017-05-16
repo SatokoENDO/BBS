@@ -33,6 +33,10 @@
 		<Marquee onmouseover=this.stop() onmouseout=this.start()>
 			<FONT color="#000000" size="5"><STRONG>ユーザー新規登録</STRONG></FONT>
 		</Marquee>
+
+		<br><br><a href = "admin">戻る</a>
+
+
 		<form action="signup" method="post">
 <table class="signup">
 	<tr>
@@ -71,7 +75,6 @@
 
 <div class="submit"><input type="submit" value="登録"></div>
 </form>
-<br><br><a href = "admin">戻る</a>
 	</div>
 </body>
 </html>
