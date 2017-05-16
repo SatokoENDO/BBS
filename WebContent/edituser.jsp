@@ -53,7 +53,7 @@
 	<tr>
 	<th>所属支店</th><td><select name="branchId">
 				<c:forEach items="${branches}" var="branch">
-						<option value="${branch.id}">
+						<option value="${branch.id}" <c:if test = "${editUser.branchId == branch.id }">selected</c:if>>
 							<c:out value="${branch.name}" />
 						</option>
 				</c:forEach>
@@ -64,7 +64,7 @@
 	<tr>
 	<th>所属部署・役職</th><td><select name="departmentId">
 				<c:forEach items="${departments}" var="department">
-						<option value="${department.id}">
+						<option value="${department.id}" <c:if test = "${editUser.departmentId == department.id }">selected</c:if>>
 							<c:out value="${department.name}" />
 						</option>
 				</c:forEach>

@@ -120,13 +120,13 @@
 								<c:if test="${ user.isLocked == 0 }">
 									<input type="hidden" name="isLocked" value="1">
 									<p>
-										<input type="submit" value="停止中">
+										<input type="submit" value="復活させる">
 									</p>
 								</c:if>
 								<c:if test="${ user.isLocked == 1 }">
 									<input type="hidden" name="isLocked" value="0">
 									<p>
-										<input type="submit" value="利用可能">
+										<input type="submit" value="停止する">
 									</p>
 								</c:if>
 							</form>
