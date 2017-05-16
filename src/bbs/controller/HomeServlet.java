@@ -40,7 +40,7 @@ public class HomeServlet extends HttpServlet {
 		String endDateParameter = request.getParameter("endDate");
 
 
-		if(startDateParameter == null){
+		if(startDateParameter == null || !startDateParameter.matches("[0-9]{4}[-][0-9]{2}[-][0-9]{2}")){
 			startDate = new MessageService().getOldestDate();
 		}else if (startDateParameter.isEmpty()){
 			startDate = new MessageService().getOldestDate();
@@ -49,7 +49,7 @@ public class HomeServlet extends HttpServlet {
 			startDate = startDateParameter;
 		}
 
-		if(endDateParameter == null){
+		if(endDateParameter == null || !endDateParameter.matches("[0-9]{4}[-][0-9]{2}[-][0-9]{2}")){
 			endDate = sdf.format(date).toString();
 		}else if (endDateParameter.isEmpty()){
 			endDate = sdf.format(date).toString();

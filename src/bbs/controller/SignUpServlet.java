@@ -26,7 +26,6 @@ public class SignUpServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 
-
 		List<Branch> branches = new BranchService().getBranchList();
 		request.setAttribute("branches", branches);
 
