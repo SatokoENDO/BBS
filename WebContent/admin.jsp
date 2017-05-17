@@ -69,7 +69,7 @@
 				<th>所属部署</th>
 				<th>編集</th>
 				<th>停止・復活</th>
-				<th>ユーザー削除</th>
+				<th><b>ユーザー削除</b></th>
 			</tr>
 			<c:forEach items="${ users }" var="user">
 				<tr>

@@ -70,14 +70,14 @@ function deleteComment(){
 			</c:forEach>
 			</c:if>
 		</select><br/><br>
-		日付:&nbsp;<input type = "date" name = "startDate">&nbsp;から&nbsp;<input type = "date" name = "endDate">&nbsp;まで
+		日付:&nbsp;<input type = "date" name = "startDate"  value = "${startDate}">&nbsp;から&nbsp;<input type = "date" name = "endDate" value = "${endDate}">&nbsp;まで
 		&nbsp;&nbsp;<input type = "submit" value = "絞込み">
 	</form> <br />
 
 		<div class="messages">
 
 			<c:forEach items="${messages}" var="message">
-				<hr size="10" width="500" color="black " align="left">
+				<hr size="8" width="560" color="#ffc305 " align="left">
 				<br />
 				<div class="mainMessage">
 				<div class="name">
@@ -163,7 +163,7 @@ function deleteComment(){
 				<c:out value = "${errorComment.text}" />
 				</textarea>
 				</c:if>
-				<br><div class="comments-form-end"><input type = "submit" value = "コメント"></div>
+				<br><div class="comments-form-end"><input type = "submit" value = "コメント">&nbsp;(500字以下)</div>
 
 					</form>
 				</div>
