@@ -16,6 +16,15 @@
 <link href="css/common.css" rel="stylesheet" type="text/css">
 <title>掲示板ホーム</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function deleteMessage(){
+	window.alert('この投稿を削除しますか？');
+}
+function deleteComment(){
+	window.alert('このコメントを削除しますか？');
+}
+
+</script>
 
 </head>
 <body>
@@ -72,13 +81,13 @@
 				<br />
 				<div class="mainMessage">
 				<div class="name">
-					投稿者：
+					投稿者
 					<c:out value="${message.name}" />
 				</div><br>
 				<div class="title">
 					件名：
 					<c:out value="${message.title}" />
-				</div>
+				</div><br>
 				<div class="text">
 					本文：
 					<c:forEach var="s" items="${fn:split(message.text, '
@@ -86,7 +95,7 @@
     <div>${s}</div>
 </c:forEach>
 				</div>
-				<div class="category">
+				<br><div class="category">
 					カテゴリー：
 					<c:out value="${message.category}" />
 				</div>
@@ -101,7 +110,7 @@
 						<form action="deleteMessage" method="post">
 
 								<input type="hidden" name="deletedId" value="${message.id}" />
-								<button type="submit" name="deleteMessage">投稿削除</button>
+								<div class="deleteMessage"><input type = "submit" value = "投稿削除" onClick="deleteMessage()"></div>
 						</form>
 					</div></td>
 				</c:if>
@@ -112,12 +121,12 @@
 
 				<c:forEach items="${comments}" var="comment">
 					<c:if test="${comment.messageId==message.id}">
-					<br>
+
 						<div class="comments"><div class="comment">
 							コメント：
 							<c:forEach var="s" items="${fn:split(comment.text, '
 ')}">
-    <div>${s}</div><br><br>
+    <div>${s}</div><br>
 </c:forEach>
 						</div><br>
 						<div class="name">
@@ -134,10 +143,10 @@
 							test="${ loginUser.branchId == 1 && loginUser.departmentId == 2 || (loginUser.departmentId == 3 && message.departmentId == 4 && loginUser.branchId == message.branchId)}">
 							<form action = "deleteComment" method = "post">
 							<input type = "hidden" name = "deletedId" value = "${ comment.id }">
-								<input type = "submit" value = "コメント削除">
-						</form><br>
+								<div class="deleteComment"><input type = "submit" value = "コメント削除" onClick="deleteComment()"></div>
+						</form>
 						</c:if>
-						<br />
+
 						</div>
 					</c:if>
 
@@ -152,9 +161,9 @@
 				<c:if test = "${errorComment.messageId == message.id}">
 				<textarea name = "text" cols ="50" rows = "5" class = "comment-box" id = "comment-box">
 				<c:out value = "${errorComment.text}" />
-				</textarea><br/>
+				</textarea>
 				</c:if>
-<br><div class="comments-form-end"><input type = "submit" value = "コメント"></div>
+				<br><div class="comments-form-end"><input type = "submit" value = "コメント"></div>
 
 					</form>
 				</div>

@@ -70,7 +70,7 @@ public class EditUserServlet extends HttpServlet{
 
 			String validationMessage =  "更新完了しました";
 			session.setAttribute("validationMessage", validationMessage);
-			request.getRequestDispatcher("edituser.jsp").forward(request, response);
+			response.sendRedirect("admin");
 
 		} else {
 			session.setAttribute("editUser", user);
@@ -112,7 +112,7 @@ public class EditUserServlet extends HttpServlet{
 	//ユーザー編集のエラーメッセージ
 	private boolean isValid(HttpServletRequest request, List<String> messages){
 
-		String loginId = request.getParameter("loginId");
+String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 		String checkPassword = request.getParameter("checkPassword");
 		String name = request.getParameter("name");
@@ -129,7 +129,7 @@ public class EditUserServlet extends HttpServlet{
 		}
 
 		if(password.length() >= 255 || password.length() < 6 || !password.matches("[ -~｡-ﾟ]+$")){
-			messages.add("パスワードは6文字以上255文字以下の半角文字です");
+			messages.add("パスワードは6文字以上255文字以下の半角文字で入力してください");
 		}
 
 		if(name.length() ==0){
@@ -137,7 +137,7 @@ public class EditUserServlet extends HttpServlet{
 		}
 
 		if(name.length() >= 10){
-			messages.add("名前は10文字以下です");
+			messages.add("名前は10文字以下で入力してください");
 		}
 
 		if(branchId >= 5){
@@ -153,7 +153,7 @@ public class EditUserServlet extends HttpServlet{
 		}
 
 		if(branchId != 1 && departmentId <= 2){
-			messages.add("支店の方は、店長か社員です");
+			messages.add("支店の方は、店長か社員で登録してください");
 		}
 
 		if(messages.size() == 0){

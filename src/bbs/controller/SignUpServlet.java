@@ -51,6 +51,8 @@ public class SignUpServlet extends HttpServlet {
 		user.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 
 
+
+
 		if (isValid(request, messages) == true) {
 			new UserService().register(user);
 			response.sendRedirect("./admin");
@@ -79,13 +81,16 @@ public class SignUpServlet extends HttpServlet {
 		int departmentId =Integer.parseInt(request.getParameter("departmentId"));
 		String stringDepartmentId = String.valueOf(departmentId);
 
+		if(new UserService().getUser(loginId) != null){
+			messages.add("既存のログインIDです");
+		}
 
 		if(loginId.length() >=20 ||  loginId.length() < 6 || !loginId.matches("[0-9a-zA-Z_]+$")){
-			messages.add("ログインIDは6文字以上20文字以下の半角英数字です");
+			messages.add("ログインIDは6文字以上20文字以下の半角英数字で入力してください");
 		}
 
 		if(password.length() >= 255 || password.length() < 6 || !password.matches("[ -~｡-ﾟ]+$")){
-			messages.add("パスワードは6文字以上255文字以下の半角文字です");
+			messages.add("パスワードは6文字以上255文字以下の半角文字で入力してください");
 		}
 
 		if (!password.equals(checkPassword)) {
@@ -112,8 +117,9 @@ public class SignUpServlet extends HttpServlet {
 		}
 
 		if(branchId != 1 && departmentId <= 2){
-			messages.add("支店の方は、店長か社員です");
+			messages.add("支店の方は、店長か社員で登録してください");
 		}
+
 
 		if (messages.size() == 0) {
 			return true;
@@ -121,5 +127,6 @@ public class SignUpServlet extends HttpServlet {
 			return false;
 		}
 	}
+
 
 }

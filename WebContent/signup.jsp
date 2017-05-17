@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/common.css" rel="stylesheet" type="text/css">
-<title>新規登録</title>
-
+<title>新規ユーザー登録</title>
 </head>
 <body>
-	<hr />
 	<c:if test = "${not empty errorMessages}">
 		<div class ="errorMessages">
 			<ul>
@@ -43,10 +41,10 @@
 		<th>ログインID</th><td><input type="text" name="loginId" value="${loginId}" /></td>
 	</tr>
 	<tr>
-		<th>パスワード</th><td><input type="text" type="password" name="password" /></td>
+		<th>パスワード</th><td><input type="password" name="password" /></td>
 	</tr>
 	<tr>
-		<th>パスワード(確認)</th><td><input type="text" type="password" name="checkPassword" /></td>
+		<th>パスワード(確認)</th><td><input type="password" name="checkPassword" /></td>
 	</tr>
 	<tr>
 		<th>名前</th><td><input type="text" name="name" value="${name}" /></td>

@@ -36,25 +36,25 @@
 	<div class = "input-text">
 		<form action = "message" method = "post">
 			<input type = "hidden" name = "id" value = "${ user.user_id }">
-			<p>
-				<label for = "title">件名(50文字以下)</label>
-			</p>
-			<textarea name="title" cols="50" rows="1" class="text-box"></textarea>
+
+				<div class = "title"><label for = "title">件名&nbsp;(50文字以下)</label></div>
+
+			<textarea name="title" cols="50" rows="2" class="text-box"><c:out value = "${errorTitle}"/></textarea>
 			<br>
 
-			<p>
-				<label for = "category">カテゴリー(10文字以下)</label>
-			</p>
-			<input name = "category" /><br>
+				<div class = "text"><label for = "text">本文&nbsp;(1000文字以下)</label></div>
+
+			<textarea name="text" cols="50" rows="10" class="text-box"><c:out value = "${errorText}"/></textarea>
 			<br>
 
-			<p>
-				<label for = "text">本文(1000文字以下)</label>
-			</p>
-			<textarea name="text" cols="50" rows="5" class="text-box"></textarea>
-			<p>
-				<div class="messageSubmit"><input type = "submit" value = "投稿">
-			</p></div>
+				<div class = "category"><label for = "category">カテゴリー&nbsp;(10文字以下)</label></div>
+
+			<input name = "category" <c:out value = "${errorCategory}"/>/><br>
+			<br>
+
+
+				<br><div class="messageSubmit"><input type = "submit" value = "投稿">
+			</div>
 		</form>
 
 

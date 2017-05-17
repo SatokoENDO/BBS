@@ -29,10 +29,10 @@
 <form action = "login" method = "post">
 <table class="login">
 	<tr>
-		<th>ログインID</th><td><input type="text" name="loginId"/>(半角英数字6～20字)</td>
+		<th>ログインID</th><td><input type="text" name="loginId"/>&nbsp;(半角英数字6～20字)</td>
 	</tr>
 	<tr>
-		<th>パスワード</th><td><input type="password" name="password" />(記号含む半角文字6～255字)</td>
+		<th>パスワード</th><td><input type="password" name="password" />&nbsp;(記号含む半角文字6～255字)</td>
 	</tr>
 </table>
 

@@ -14,19 +14,14 @@ body {
     font-family:"Hiragino Kaku Gothic Pro",HiraKakuPro-W3,"ヒラギノ角ゴ Pro W3","メイリオ", Meiryo,"ＭＳ Ｐゴシック",verdana,sans-serif;
     font-size:12px;
     color:#000;
-    background:#efefef;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.80, #fff), color-stop(0.00, #efefef));
-    background:-webkit-linear-gradient(top, #efefef 0%, #fff 80%);
-    background:-moz-linear-gradient(top, #efefef 0%, #fff 80%);
-    background:-o-linear-gradient(top, #efefef 0%, #fff 80%);
-    background:-ms-linear-gradient(top, #efefef 0%, #fff 80%);
-    background:linear-gradient(to bottom, #efefef 0%, #fff 80%);
+    background:#faf6ea;
+
     word-wrap: break-word;
 }
 
 .mainMessage {
 	position: relative;
-	background: #bdbdbd;
+	background: #e1e8ef;
 	border: 1px solid #555873;
 	border-radius:10px;
 	padding:10px;
@@ -45,7 +40,7 @@ body {
 
 .mainMessage:after {
 	border-color: rgba(189, 189, 189, 0);
-	border-right-color: #bdbdbd;
+	border-right-color: #e1e8ef;
 	border-width: 20px;
 	margin-top: -20px;
 }
@@ -58,7 +53,7 @@ body {
 
 .comments {
 	position: relative;
-	background: #79b0d5;
+	background: #afcfee;
 	border: 1px solid #555873;
 	border-radius:10px;
 	padding:10px;
@@ -79,7 +74,7 @@ body {
 
 .comments:after {
 	border-color: rgba(121, 176, 213, 0);
-	border-left-color: #79b0d5;
+	border-left-color: #afcfee;
 	border-width: 20px;
 	margin-top: -20px;
 
@@ -96,7 +91,7 @@ body {
 	margin-left:50px;
 }
 .comments-form-end {
-	margin-left:300px;
+	margin-left:304px;
 }
 
 .errorMessages {
@@ -112,7 +107,7 @@ body {
 }
 
 .messageSubmit{
-	margin-left:1px;
+	margin-left:auto;
 }
 
 .update{
@@ -121,6 +116,26 @@ body {
 
 .userSubmit{
 	margin-left:10px;
+}
+
+.title{
+	margin-left:auto;
+}
+
+.category{
+	margin-left:auto;
+}
+
+.text{
+	margin-left:auto;
+}
+
+.deleteComment{
+	margin-left:-1px;
+}
+
+.deleteMessage{
+	margin-left:-2px;
 }
 
 br {

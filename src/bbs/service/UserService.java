@@ -147,6 +147,29 @@ public class UserService {
 		 }
 	}
 
+	//ログインIDの既存チェック
+	public User getUser(String loginId){
+		Connection connection = null;
+		try{
+			connection = getConnection();
+
+			UserDao userDao = new UserDao();
+			User user = userDao.getUser(connection, loginId);
+
+			commit(connection);
+			return user;
+		} catch(RuntimeException e){
+			 rollback(connection);
+			 throw e;
+		 } catch(Error e){
+			 rollback(connection);
+			 throw e;
+		 } finally{
+			 close(connection);
+		 }
+	}
+
+
 	//ユーザー削除
 	public void delete(int deletedId){
 		Connection connection = null;

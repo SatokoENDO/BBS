@@ -39,17 +39,17 @@
 <input type ="hidden" name = "userId" value = "${editUser.id}">
 	<table class="signup">
 
-	<tr>
-		<th>ログインID</th><td><input type="text" name="loginId" value="${editUser.loginId}" />(半角英数字6～20字)</td>
+	 <tr>
+		<th>ログインID</th><td><input type="text" name="loginId" value="${editUser.loginId}" />&nbsp;(半角英数字6～20字)</td>
 	</tr>
 	<tr>
-		<th>パスワード</th><td><input type="password" name="password" />(記号含む半角文字6～255字)</td>
+		<th>パスワード</th><td><input type="password" name="password" />&nbsp;(記号含む半角文字6～255字)</td>
 	</tr>
 	<tr>
 		<th>パスワード(確認)</th><td><input type="password" name="checkPassword" /></td>
 	</tr>
 	<tr>
-		<th>名前</th><td><input type="text" name="name" value="${editUser.name}" />(10字以内)</td>
+		<th>名前</th><td><input type="text" name="name" value="${editUser.name}" />&nbsp;(10字以内)</td>
 	</tr>
 	<tr>
 	<th>所属支店</th><td><select name="branchId">
