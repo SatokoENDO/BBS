@@ -49,7 +49,7 @@
 
 				<div class = "category"><label for = "category">カテゴリー&nbsp;(10文字以下)</label></div>
 
-			<input name = "category" <c:out value = "${errorCategory}"/>/><br>
+			<textarea name="category" cols="20" rows="1" class="text-box"><c:out value = "${errorCategory}"/></textarea>
 			<br>
 
 

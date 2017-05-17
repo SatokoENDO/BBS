@@ -56,7 +56,7 @@ function deleteComment(){
 			<span class="name"><c:out value="${loginUser.name}" />がログイン中</span>
 		</div>
 		<br /><form action="./" method = "Get">
-カテゴリ:<select name="category" size = "1">
+カテゴリ:&nbsp;<select name="category" size = "1">
 		<c:if test = "${selectedCategory == null}">
 			<option value = "" selected >  </option>
 			<c:forEach items = "${categories}" var = "category">
@@ -70,7 +70,7 @@ function deleteComment(){
 			</c:forEach>
 			</c:if>
 		</select><br/><br>
-		日付:&nbsp;<input type = "date" name = "startDate">から<input type = "date" name = "endDate">まで
+		日付:&nbsp;<input type = "date" name = "startDate">&nbsp;から&nbsp;<input type = "date" name = "endDate">&nbsp;まで
 		&nbsp;&nbsp;<input type = "submit" value = "絞込み">
 	</form> <br />
 
@@ -147,7 +147,7 @@ function deleteComment(){
 						</form>
 						</c:if>
 
-						</div>
+						</div><br>
 					</c:if>
 
 				</c:forEach>
