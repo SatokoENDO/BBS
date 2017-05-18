@@ -168,6 +168,7 @@ function deleteComment(){
 					</form>
 				</div>
 			</c:forEach>
+			<c:remove var = "errorComment" scope = "session"/>
 		</div>
 	</div>
 </body>
