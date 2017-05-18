@@ -194,27 +194,5 @@ public class UserService {
 		}
 	}
 
-	/*public String updateUser(User user, int check) {
-		String message = new String();
-		Connection connection = null;
-		try {
-			connection = getConnection();
-
-			String encPassword = CipherUtil.encrypt(user.getPassword());
-			user.setPassword(encPassword);
-
-			UserDao userDao = new UserDao();
-			message = userDao.updateUser(connection, user, check);
-
-			commit(connection);
-		} catch (RuntimeException e) {
-			rollback(connection);
-			throw e;
-		} finally {
-			close(connection);
-		}
-		return message;
-	}*/
-
 
 }

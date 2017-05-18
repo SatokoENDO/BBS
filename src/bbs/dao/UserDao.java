@@ -15,45 +15,6 @@ import bbs.exception.SQLRuntimeException;
 
 public class UserDao {
 
-	/*public void userUpdete(Connection connection, User user, String password) {
-		PreparedStatement ps = null;
-		try {
-			StringBuilder mySql = new StringBuilder();
-			mySql.append("update users set ");
-			mySql.append("login_id = ?");
-			mySql.append(", name = ?");
-			mySql.append(", branch_id = ?");
-			mySql.append(", department_id = ? ");
-			if (StringUtils.isEmpty(password) == false){
-				mySql.append(", password = ?");
-			}
-			mySql.append("where ");
-			mySql.append("id = ?");
-
-			ps = connection.prepareStatement(mySql.toString());
-
-			ps.setString(1, user.getLoginId());
-			ps.setString(2, user.getName());
-			ps.setInt(3, user.getBranchId());
-			ps.setInt(4, user.getDepartmentId());
-			if (StringUtils.isEmpty(password) == false){
-				ps.setString(5, user.getPassword());
-				ps.setInt(6, user.getId());
-			} else {
-				ps.setInt(5, user.getId());
-			}
-
-			int count = ps.executeUpdate();
-			if (count == 0) {
-				throw new NoRowsUpdatedRuntimeException();
-			}
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally {
-			close(ps);
-		}
-	}*/
-
 	public void doIsLocked(Connection connection, String is_locked, int user_id) {
 
 		PreparedStatement ps = null;
