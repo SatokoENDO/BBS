@@ -67,6 +67,7 @@ public class EditUserServlet extends HttpServlet{
 
 
 			new UserService().update(user);
+			System.out.println(user.getPassword());
 
 			String validationMessage =  "更新完了しました";
 			session.setAttribute("validationMessage", validationMessage);

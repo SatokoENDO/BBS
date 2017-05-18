@@ -9,15 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
 import bbs.beans.User;
 import bbs.exception.NoRowsUpdatedRuntimeException;
 import bbs.exception.SQLRuntimeException;
 
 public class UserDao {
 
-	public void userUpdete(Connection connection, User user, String password) {
+	/*public void userUpdete(Connection connection, User user, String password) {
 		PreparedStatement ps = null;
 		try {
 			StringBuilder mySql = new StringBuilder();
@@ -54,7 +52,7 @@ public class UserDao {
 		} finally {
 			close(ps);
 		}
-	}
+	}*/
 
 	public void doIsLocked(Connection connection, String is_locked, int user_id) {
 
@@ -263,7 +261,7 @@ public class UserDao {
 			ps.setString(1, user.getLoginId());
 			ps.setInt(2, user.getBranchId());
 			ps.setInt(3, user.getDepartmentId());
-			if((user.getPassword()).isEmpty()){
+			if((user.getPassword()).isEmpty() ==true){
 				ps.setString(4, user.getName());
 				ps.setInt(5, user.getId());
 			} else{
