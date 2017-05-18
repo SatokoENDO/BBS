@@ -20,7 +20,7 @@
 <c:if test = "${not empty errorMessages}">
 		<div class ="errorMessages">
 			<ul>
-				<c:forEach items = "${errorMesssages}" var = "message">
+				<c:forEach items = "${errorMessages}" var = "message">
 					<li><c:out value = "${message}"/>
 				</c:forEach>
 			</ul>

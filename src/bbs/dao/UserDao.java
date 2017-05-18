@@ -253,7 +253,9 @@ public class UserDao {
 			sql.append(" login_id = ?");
 			sql.append(", branch_id = ?");
 			sql.append(", department_id = ?");
+			if(!(user.getPassword()).isEmpty()){
 			sql.append(", password = ?");
+			}
 			sql.append(", name = ?");
 			sql.append(" WHERE id = ?");
 			ps = connection.prepareStatement(sql.toString());
@@ -261,9 +263,14 @@ public class UserDao {
 			ps.setString(1, user.getLoginId());
 			ps.setInt(2, user.getBranchId());
 			ps.setInt(3, user.getDepartmentId());
-			ps.setString(4, user.getPassword());
-			ps.setString(5, user.getName());
-			ps.setInt(6, user.getId());
+			if((user.getPassword()).isEmpty()){
+				ps.setString(4, user.getName());
+				ps.setInt(5, user.getId());
+			} else{
+				ps.setString(4, user.getPassword());
+				ps.setString(5, user.getName());
+				ps.setInt(6, user.getId());
+			}
 			ps.executeUpdate();
 
 			System.out.println(ps.toString());

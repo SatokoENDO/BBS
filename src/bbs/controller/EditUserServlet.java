@@ -76,6 +76,7 @@ public class EditUserServlet extends HttpServlet{
 			session.setAttribute("editUser", user);
 
 			session.setAttribute("errorMessages", messages);
+			System.out.println(messages.size());
 			request.getRequestDispatcher("edituser.jsp").forward(request, response);
 		}
 
@@ -128,7 +129,7 @@ String loginId = request.getParameter("loginId");
 			messages.add("ログインIDは6文字以上20文字以下の半角英数字です");
 		}
 
-		if(password.length() >= 255 || password.length() < 6 || !password.matches("[ -~｡-ﾟ]+$")){
+		if(password.length() >= 255 || (password.length() < 6) && (password.length() > 0)){
 			messages.add("パスワードは6文字以上255文字以下の半角文字で入力してください");
 		}
 
