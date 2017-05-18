@@ -29,8 +29,8 @@
 	</c:if>
 	<div class="main">
 		<Marquee onmouseover=this.stop() onmouseout=this.start()>
-			<FONT color="#000000" size="5"><STRONG>ユーザー新規登録</STRONG></FONT>
-		</Marquee>
+		<font size="6" color="#008080"><b>ユーザー新規登録</b></font>
+	</Marquee>
 
 		<br><br><a href = "admin">戻る</a>
 

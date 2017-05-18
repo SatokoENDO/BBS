@@ -14,8 +14,8 @@
 <body>
 
 <Marquee onmouseover=this.stop() onmouseout=this.start()>
-<FONT color="#000000" size="5"><STRONG>新規投稿</STRONG></FONT>
-</Marquee>
+		<font size="6" color="#008080"><b>新規投稿</b></font>
+	</Marquee>
 <a href = "./">戻る</a>
 <div align="right"><a href="logout">ログアウト</a></div>
 	<div class="loginUser">

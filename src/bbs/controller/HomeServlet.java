@@ -47,6 +47,7 @@ public class HomeServlet extends HttpServlet {
 
 		} else {
 			startDate = startDateParameter;
+			request.setAttribute("startDate", startDate);
 		}
 
 		if(endDateParameter == null || !endDateParameter.matches("[0-9]{4}[-][0-9]{2}[-][0-9]{2}")){
@@ -55,6 +56,7 @@ public class HomeServlet extends HttpServlet {
 			endDate = sdf.format(date).toString();
 		} else {
 			endDate = endDateParameter;
+			request.setAttribute("endDate", endDate);
 		}
 
 

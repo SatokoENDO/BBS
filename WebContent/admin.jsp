@@ -30,7 +30,7 @@
 <body>
 
 	<Marquee onmouseover=this.stop() onmouseout=this.start()>
-		<FONT color="#000000" size="5"><STRONG>ユーザー管理</STRONG></FONT>
+		<font size="6" color="#008080"><b>ユーザー管理</b></font>
 	</Marquee>
 
 	<br><br><a href = "./">戻る</a>

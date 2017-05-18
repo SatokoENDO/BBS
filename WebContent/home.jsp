@@ -29,8 +29,8 @@ function deleteComment(){
 </head>
 <body>
 <Marquee onmouseover=this.stop() onmouseout=this.start()>
-<FONT color="#000000" size="5"><STRONG>掲示板ホーム</STRONG></FONT>
-</Marquee>
+		<font size="6" color="#008080"><b>掲示板ホーム</b></font>
+	</Marquee>
 
 <c:if test = "${not empty errorMessages}">
 	<div class = "errorMessages">

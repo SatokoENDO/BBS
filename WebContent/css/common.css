@@ -8,6 +8,7 @@ html {
 body {
 	margin-left:20%;
 	margin-right:20%;
+
 	padding:0;
     line-height:1.6;
     letter-spacing:1px;
@@ -91,10 +92,10 @@ body {
 }
 
 .comments-form{
-	margin-left:108px;
+	margin-left:141px;
 }
 .comments-form-end {
-	margin-left:304px;
+	margin-left:270px;
 }
 
 .errorMessages {
