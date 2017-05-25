@@ -17,53 +17,53 @@ import bbs.beans.User;
 import bbs.service.AdminService;
 @WebFilter(filterName = "checkLockFilter", urlPatterns = { "/*" })
 public class CheckLockFilter implements Filter{
-	 public void doFilter(ServletRequest request, ServletResponse response,
-	            FilterChain chain) throws IOException, ServletException {
-		 HttpSession session = ((HttpServletRequest)request).getSession();
-			//String target = ((HttpServletRequest)request).getServletPath();
-			//String thisURI = ((HttpServletRequest)request).getRequestURI();
-			User user = (User) session.getAttribute("loginUser");
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		//String target = ((HttpServletRequest)request).getServletPath();
+		//String thisURI = ((HttpServletRequest)request).getRequestURI();
+		User user = (User) session.getAttribute("loginUser");
 
 
-	try{
-		if(user != null){
-			User checkedUser = new AdminService().getUser(user.getId());
+		try{
+			if(user != null){
+				User checkedUser = new AdminService().getUser(user.getId());
 
 
-			if(checkedUser == null){
-			String message = "アカウントが存在しません";
-			session.setAttribute("errorMessages", message);
-			session.removeAttribute("loginUser");
-			((HttpServletResponse)response).sendRedirect("login");
-			return;
-			} else if((checkedUser.getIsLocked()).equals("0")){
-				String message = "アカウントが停止されています";
-				session.setAttribute("errorMessages", message);
-				session.removeAttribute("loginUser");
-				((HttpServletResponse)response).sendRedirect("login");
-				return;
+				if(checkedUser == null){
+					String message = "アカウントが存在しません";
+					session.setAttribute("errorMessages", message);
+					session.removeAttribute("loginUser");
+					((HttpServletResponse)response).sendRedirect("login");
+					return;
+				} else if((checkedUser.getIsLocked()).equals("0")){
+					String message = "アカウントが停止されています";
+					session.setAttribute("errorMessages", message);
+					session.removeAttribute("loginUser");
+					((HttpServletResponse)response).sendRedirect("login");
+					return;
+				} else{
+					chain.doFilter(request, response);
+				}
 			} else{
 				chain.doFilter(request, response);
 			}
-		} else{
-			chain.doFilter(request, response);
+
+
+		} catch (ServletException se){
+		}catch (IOException e){
 		}
-
-
-	 } catch (ServletException se){
-	    }catch (IOException e){
-	    }
 	}
 
 
-    public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException {
 
-    }
+	}
 
 
-	 public void destroy() {
+	public void destroy() {
 
-	 }
+	}
 
 
 }

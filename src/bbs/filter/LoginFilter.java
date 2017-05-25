@@ -17,43 +17,43 @@ import bbs.beans.User;
 
 @WebFilter(urlPatterns = {"/index.jsp", "/home", "/home.jsp", "/message", "/admin", "/signup", "/edituser"})
 public class LoginFilter implements Filter{
-	 public void doFilter(ServletRequest request, ServletResponse response,
-	            FilterChain chain) throws IOException, ServletException {
-		 HttpSession session = ((HttpServletRequest)request).getSession();
-			String target = ((HttpServletRequest)request).getServletPath();
-			String thisURI = ((HttpServletRequest)request).getRequestURI();
-			User user = (User) session.getAttribute("loginUser");
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		String target = ((HttpServletRequest)request).getServletPath();
+		String thisURI = ((HttpServletRequest)request).getRequestURI();
+		User user = (User) session.getAttribute("loginUser");
 
 
-	try{
-		if(!thisURI.matches(".*.css") && (!target.equals("/login") && user == null)) {
-			/*int userId =user.getId();
+		try{
+			if(!thisURI.matches(".*.css") && (!target.equals("/login") && user == null)) {
+				/*int userId =user.getId();
 			User updateUser = new UserService().getUser(userId);
 			session.setAttribute("loginUser",updateUser);*/
 
 
-			String message = "ログインしてください";
-			session.setAttribute("errorMessages", message);
-			((HttpServletResponse)response).sendRedirect("login");
-			return;
+				String message = "ログインしてください";
+				session.setAttribute("errorMessages", message);
+				((HttpServletResponse)response).sendRedirect("login");
+				return;
+			}
+
+			chain.doFilter(request, response);
+
+		} catch (ServletException se){
+		}catch (IOException e){
 		}
-
-		chain.doFilter(request, response);
-
-	 } catch (ServletException se){
-	    }catch (IOException e){
-	    }
 	}
 
 
-   public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException {
 
-   }
+	}
 
 
-	 public void destroy() {
+	public void destroy() {
 
-	 }
+	}
 
 
 }
