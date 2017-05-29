@@ -8,7 +8,7 @@ branch_id integer not null,
 department_id integer not null,
 insert_date timestamp not null,
 update_date timestamp not null,
-is_locked boolean no null;
+is_locked boolean not null;
 
 /* 支店テーブル*/
 create table branches(
