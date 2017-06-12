@@ -76,7 +76,7 @@ function deleteComment(){
 		<div class="messages">
 
 			<c:forEach items="${messages}" var="message">
-				<hr size="8" width="560" color="#ffc305 " align="left">
+				<center><img src="keisen.png"></center>
 				<br />
 				<div class="mainMessage">
 				<div class="name">
@@ -165,6 +165,7 @@ function deleteComment(){
 				<br><div class="comments-form-end"><input type = "submit" value = "コメント">&nbsp;(500字以下)</div>
 
 					</form>
+					<br />
 				</div>
 			</c:forEach>
 			<c:remove var = "errorComment" scope = "session"/>

@@ -14,9 +14,7 @@ body {
     letter-spacing:1px;
     font-family:"Hiragino Kaku Gothic Pro",HiraKakugoyro-W3,"ヒラギノ角ゴ Pro W3","メイリオ", Meiryo,"ＭＳ Ｐゴシック",verdana,sans-serif;
     font-size:12px;
-    color:000;
-    background:linear-gradient(#ffffff, #86D0EB);
-
+    background:linear-gradient(#ffffff, #86D0EB );
     word-wrap: break-word;
 }
 

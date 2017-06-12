@@ -33,7 +33,8 @@
 		<font size="6" color="#00aced "><b>ユーザー管理</b></font>
 	</Marquee>
 
-	<br><br><a href = "./">戻る</a>
+	<br><br><a href = "./">戻る</a><div align="right"><a href="logout">ログアウト</a></div>
+	</div>
 
 
 	<c:if test = "${not empty errorMessages}">
@@ -56,8 +57,7 @@
 
 	<br>
 	<div class="header">
-<a href="./">ホーム</a>  <a href="signup">新規ユーザー登録</a><div align="right"><a href="logout">ログアウト</a></div>
-	</div>
+<a href="./">ホーム</a>  <a href="signup">新規ユーザー登録</a>
 	<br>
 
 	<div class="admin">
@@ -136,7 +136,7 @@
 							<form action="delete" method="post" onClick="return check2()">
 								<input type="hidden" name="id" value="${user.id}">
 								<p>
-									<input type="submit" value="ユーザー削除">
+								<input type="submit" value="ユーザー削除" style="background-color:#FFFF00" onmouseover="this.style.background='#99ccff'" onmouseout="this.style.background='#FFFF00'">
 								</p>
 							</form>
 						</c:if></td>
@@ -146,14 +146,13 @@
 		</table>
 	</div>
 	<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 </body>

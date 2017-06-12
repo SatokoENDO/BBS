@@ -63,6 +63,13 @@
 		<c:remove var = "text" scope = "session" />
 
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 </body>
 </html>

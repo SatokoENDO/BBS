@@ -51,25 +51,32 @@
 	<tr>
 		<th>名前</th><td><input type="text" name="name" value="${editUser.name}" />&nbsp;(10字以内)</td>
 	</tr>
+	<c:if test="${editUser.id != loginUser.getId()}">
 	<tr>
-	<th>所属支店</th><td><select name="branchId">
-				<c:forEach items="${branches}" var="branch">
-						<option value="${branch.id}">
-							<c:out value="${branch.name}" />
-						</option>
-				</c:forEach>
-			</select></td>
+	<th>所属支店</th><td><select name="branchId" size = "1">
+		<c:forEach items = "${branches}" var = "branch">
+			<option value="${branch.id}" <c:if test="${editUser.branchId == branch.id}">selected</c:if>>
+			<c:out value = "${branch.name}"/>
+			</option>
+		</c:forEach>
+	</select></td>
 	</tr>
 
 	<tr>
-	<th>所属部署・役職</th><td><select name="departmentId">
-				<c:forEach items="${departments}" var="department">
-						<option value="${department.id}">
-							<c:out value="${department.name}" />
-						</option>
-				</c:forEach>
-			</select></td>
+	<th>所属部署・役職</th><td><select name="departmentId" size = "1">
+		<c:forEach items = "${departments}" var = "department">
+			<option value="${department.id}" <c:if test="${editUser.departmentId == department.id}">selected</c:if>>
+			<c:out value = "${department.name}"/></option>
+		</c:forEach>
+	</select></td>
 	</tr>
+	</c:if>
+	<c:if test = "${editUser.id == loginUser.id }">
+	<input type ="hidden" name = "branchId" value = "${editUser.branchId}">
+	<input type ="hidden" name = "departmentId" value = "${editUser.departmentId}">
+	</c:if>
+
+
 
 	</table>
 
@@ -79,6 +86,13 @@
 
 
 </div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 			<br>
 			<br>
 			<br>
