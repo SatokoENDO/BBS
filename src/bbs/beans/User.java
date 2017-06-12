@@ -2,6 +2,9 @@ package bbs.beans;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
+@Data
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -17,58 +20,45 @@ public class User implements Serializable {
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getLoginId() {
 		return loginId;
 	}
-
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getCheckPassword() {
 		return checkPassword;
 	}
 	public void setCheckPassword(String checkPassword) {
 		this.checkPassword = checkPassword;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public int getBranchId() {
 		return branchId;
 	}
-
 	public void setBranchId(int branchId) {
 		this.branchId = branchId;
 	}
-
 	public int getDepartmentId() {
 		return departmentId;
 	}
-
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
-
 
 	public String getIsLocked() {
 		return isLocked;
@@ -77,6 +67,9 @@ public class User implements Serializable {
 	public void setIsLocked(String isLocked) {
 		this.isLocked = isLocked;
 	}
+
+
+
 
 
 }

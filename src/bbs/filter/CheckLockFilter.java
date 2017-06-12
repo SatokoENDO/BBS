@@ -20,8 +20,6 @@ public class CheckLockFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
-		//String target = ((HttpServletRequest)request).getServletPath();
-		//String thisURI = ((HttpServletRequest)request).getRequestURI();
 		User user = (User) session.getAttribute("loginUser");
 
 
